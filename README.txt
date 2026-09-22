@@ -46,3 +46,8 @@ ABOUT QUIZ FUNCTIONALITY
 The current assignment focuses on HTML + CSS. quiz.html is intentionally a static prototype.
 Its Submit button sends the form to results.html, but it does not calculate a score.
 Later in the course, JavaScript + JSON/API can dynamically load questions and calculate results.
+
+
+Assignment 2 additions:
+- grid-layout.html demonstrates CSS Grid Areas.
+- gallery.html demonstrates CSS Grid Image Gallery with 9 images and hover captions.
