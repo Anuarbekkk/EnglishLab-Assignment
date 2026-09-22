@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#113c4b"/><stop offset="1" stop-color="#1d2b66"/></linearGradient></defs>
+  <rect width="640" height="360" rx="24" fill="url(#a)"/>
+  <rect x="75" y="64" width="490" height="230" rx="22" fill="#0e1830" stroke="#31506d"/>
+  <text x="110" y="128" fill="#76e6ff" font-family="Arial" font-size="26">VOCABULARY</text>
+  <text x="110" y="190" fill="#fff" font-family="Arial" font-size="40" font-weight="700">Build stronger words</text>
+  <circle cx="130" cy="242" r="19" fill="#32d3ff"/>
+  <rect x="165" y="228" width="170" height="16" rx="8" fill="#8ea2d1"/>
+  <circle cx="390" cy="242" r="19" fill="#4f7cff"/>
+  <rect x="425" y="228" width="100" height="16" rx="8" fill="#8ea2d1"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <rect width="300" height="300" fill="#182f48"/>
+  <circle cx="150" cy="112" r="62" fill="#64c1d4"/>
+  <path d="M55 290c10-78 47-116 95-116s85 38 95 116" fill="#32d3ff"/>
+  <text x="150" y="280" text-anchor="middle" fill="#fff" font-family="Arial" font-size="24" font-weight="700">Member 2</text>
+</svg>
