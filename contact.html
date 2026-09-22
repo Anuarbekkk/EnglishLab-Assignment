@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Page created by: Feruza Zhasan, Group SE-2025 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EnglishLab | Contact</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header id="main-header">
+      <div class="logo">EnglishLab</div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="tests.html">Tests</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="learn.html">Learn</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a class="active" href="contact.html">Contact</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <h1>Contact</h1>
+      <p>Send us a message about what you want to practice next.</p>
+
+      <img class="page-img" src="images/profile-3.svg" alt="Profile picture of Feruza Zhasan">
+            
+      <form action="contact.html" method="get">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+
+        <label for="level">English level</label>
+        <select id="level" name="level" required>
+          <option value="">Choose a level</option>
+          <option>A1 Beginner</option>
+          <option>A2 Elementary</option>
+          <option>B1 Intermediate</option>
+          <option>B2 Upper Intermediate</option>
+          <option>C1 Advanced</option>
+        </select>
+
+        <fieldset>
+          <legend>What do you want to practice?</legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="practice" value="grammar" required>
+              <span class="letter-circle">A</span>
+              <span class="option-text">Grammar</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="practice" value="vocabulary">
+              <span class="letter-circle">B</span>
+              <span class="option-text">Vocabulary</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="practice" value="reading">
+              <span class="letter-circle">C</span>
+              <span class="option-text">Reading</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Write your message here" required></textarea>
+
+        <button type="submit" class="btn btn-success">Send</button>
+      </form>
+    </main>
+
+    <footer>
+      <p>Page by Feruza Zhasan</p>
+      <p>Group SE-2025: Anuarbek Mustafin, Feruza Zhasan</p>
+      <p>Web Technologies 1 - Assignment 1</p>
+    </footer>
+  </div>
+</body>
+</html>
