@@ -1,13 +1,14 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-  <!-- Page owner: Anuarbek Mustafin, Group SE-2505 -->
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EnglishLab responsive English learning website project for Web Technologies 1.">
+  <meta name="description" content="EnglishLab interactive English learning website with JavaScript form validation, FAQ accordion, subscription popup, color switcher and live clock.">
   <title>EnglishLab | Learn</title>
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/assignment4.js" defer></script>
 </head>
 
     <body>
@@ -61,6 +62,24 @@
   </div>
 </section>
 
+
+
+<section class="mt-4" aria-labelledby="faqHeading">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3"><div><p class="a4-eyebrow mb-1">ASSIGNMENT 04 / JAVASCRIPT</p>
+    <h2 id="faqHeading" class="mb-0">Frequently Asked Questions</h2></div><span class="a4-chip">Click to expand</span></div>
+  <p>Each answer starts collapsed and opens smoothly when its question is clicked.</p>
+  <div class="faq-list" id="faqList">
+    <div class="faq-item"><h3 class="m-0"><button type="button" class="faq-question" id="faqBtn1" aria-expanded="false" aria-controls="faqAnswer1">How can I improve my grammar? <span class="faq-icon" aria-hidden="true">+</span></button></h3>
+      <div class="faq-answer" id="faqAnswer1" role="region" aria-labelledby="faqBtn1" aria-hidden="true" inert><div class="faq-answer-inner"><p>Start with one short rule, study two examples, and practise with the Grammar Quiz. Review every incorrect answer afterwards.</p></div></div></div>
+    <div class="faq-item"><h3 class="m-0"><button type="button" class="faq-question" id="faqBtn2" aria-expanded="false" aria-controls="faqAnswer2">How often should I learn new words? <span class="faq-icon" aria-hidden="true">+</span></button></h3>
+      <div class="faq-answer" id="faqAnswer2" role="region" aria-labelledby="faqBtn2" aria-hidden="true" inert><div class="faq-answer-inner"><p>Practise a few words every day. Write your own example sentences and revise old words before adding new ones.</p></div></div></div>
+    <div class="faq-item"><h3 class="m-0"><button type="button" class="faq-question" id="faqBtn3" aria-expanded="false" aria-controls="faqAnswer3">What is the best way to prepare for a quiz? <span class="faq-icon" aria-hidden="true">+</span></button></h3>
+      <div class="faq-answer" id="faqAnswer3" role="region" aria-labelledby="faqBtn3" aria-hidden="true" inert><div class="faq-answer-inner"><p>Read the short lessons, take the quiz without rushing, and check the results. Repeat the exercise after reviewing mistakes.</p></div></div></div>
+    <div class="faq-item"><h3 class="m-0"><button type="button" class="faq-question" id="faqBtn4" aria-expanded="false" aria-controls="faqAnswer4">Can I use EnglishLab on a phone? <span class="faq-icon" aria-hidden="true">+</span></button></h3>
+      <div class="faq-answer" id="faqAnswer4" role="region" aria-labelledby="faqBtn4" aria-hidden="true" inert><div class="faq-answer-inner"><p>Yes. The website uses Bootstrap and CSS Media Queries to adapt its layout to small and large screens.</p></div></div></div>
+  </div>
+</section>
+
 <section class="mt-4">
   <h2>Study Tips</h2>
   <ul class="feature-list"><li>Practice a little every day.</li><li>Write new words in full sentences.</li><li>Repeat a test after reading the lesson again.</li></ul>
@@ -70,7 +89,7 @@
         <footer class="site-footer mt-5 pt-4 pb-2 border-top border-secondary text-center">
   <p class="mb-1">Page owner: Anuarbek Mustafin</p>
   <p class="mb-1">Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p>
-  <p class="mb-0">Web Technologies 1 — Assignment 3 submission</p>
+  <p class="mb-0">Web Technologies 1 — Assignment 4 submission</p>
 </footer>
 
       </div>

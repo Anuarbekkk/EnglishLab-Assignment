@@ -1,13 +1,14 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-  <!-- Page owner: Anuarbek Mustafin & Feruza Zhasan, Group SE-2505 -->
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EnglishLab responsive English learning website project for Web Technologies 1.">
+  <meta name="description" content="EnglishLab interactive English learning website with JavaScript form validation, FAQ accordion, subscription popup, color switcher and live clock.">
   <title>EnglishLab | Dashboard</title>
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/assignment4.js" defer></script>
 </head>
 
     <body>
@@ -45,6 +46,46 @@
   </div>
 </section>
 
+
+
+<section class="a4-panel mt-4 mb-4 p-3 p-lg-4" aria-labelledby="interactive-heading">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div><p class="a4-eyebrow mb-1">ASSIGNMENT 04 / JAVASCRIPT</p><h2 id="interactive-heading" class="mb-1">Interactive Study Tools</h2>
+    <p class="mb-0">Try the live clock, switch the page background, or open a subscription form.</p></div>
+  </div>
+  <div class="row g-3">
+    <div class="col-12 col-md-5"><div class="a4-mini-card h-100 p-3">
+      <h3 class="h5">Current date &amp; time</h3><p class="a4-clock mb-1" id="liveClock" role="timer" aria-label="Current local date and time">Loading date and time...</p>
+      <small class="text-secondary">Updates automatically every second using JavaScript.</small>
+    </div></div>
+    <div class="col-12 col-md-7"><div class="a4-mini-card h-100 p-3">
+      <h3 class="h5">Choose your background</h3><p class="mb-3">Every click cycles to the next background color.</p>
+      <div class="d-flex flex-wrap gap-2 align-items-center"><button id="changeBgBtn" class="btn btn-primary" type="button">Change background color</button>
+      <span id="colorStatus" class="a4-chip" role="status" aria-live="polite">Theme 1 of 4 · Midnight</span></div>
+    </div></div>
+  </div>
+  <div class="d-flex flex-wrap gap-3 align-items-center mt-3">
+    <button id="openSubscribeBtn" type="button" class="btn btn-success btn-lg">Subscribe for study tips</button>
+    <span class="text-secondary">Demo form — no message is sent to a server.</span>
+  </div>
+</section>
+
+
+<div id="subscribeOverlay" class="a4-modal-overlay" hidden>
+  <div class="a4-dialog p-4" role="dialog" aria-modal="true" aria-labelledby="subscribeTitle" aria-describedby="subscribeDescription">
+    <button id="closeSubscribeBtn" class="a4-close" type="button" aria-label="Close subscription form">&times;</button>
+    <p class="a4-eyebrow mb-1">STAY IN THE LOOP</p><h2 id="subscribeTitle" class="h3 mb-2">Get English study tips</h2>
+    <p id="subscribeDescription">Enter your email to test the JavaScript subscription popup.</p>
+    <form id="subscribeForm" novalidate>
+      <label class="form-label" for="subscribeEmail">Email address</label>
+      <input class="form-control" id="subscribeEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required aria-describedby="subscribeError">
+      <div class="a4-field-error" id="subscribeError" role="alert"></div>
+      <div class="d-flex flex-wrap gap-2 mt-3"><button type="submit" class="btn btn-success">Subscribe</button><button type="button" id="cancelSubscribeBtn" class="btn btn-outline-light">Cancel</button></div>
+      <div id="subscribeFeedback" class="a4-feedback mt-3" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+
 <section class="mt-lg-4" aria-labelledby="practice-heading">
   <h2 id="practice-heading">What you can practice</h2>
   <div class="row g-4 mt-1">
@@ -81,8 +122,8 @@
 <section class="mt-4" aria-labelledby="team-heading">
   <h2 id="team-heading">About the Team Members</h2>
   <div class="row g-4 mt-1">
-    <div class="col-md-6"><article class="profile-card h-100 p-4 text-center"><img class="profile-img" src="images/profile-2.svg" alt="Illustrated profile of Anuarbek Mustafin"><h3 class="h5 mt-3">Anuarbek Mustafin</h3><p class="mb-0">Pages: Quiz and Learn. Assignment 3 contribution: Bootstrap grid, buttons, navbar integration and responsive layout.</p></article></div>
-    <div class="col-md-6"><article class="profile-card h-100 p-4 text-center"><img class="profile-img" src="images/profile-3.svg" alt="Illustrated profile of Feruza Zhasan"><h3 class="h5 mt-3">Feruza Zhasan</h3><p class="mb-0">Pages: Results and Contact. Assignment 3 contribution: Bootstrap forms, cards, tables, navbar integration and responsive components.</p></article></div>
+    <div class="col-md-6"><article class="profile-card h-100 p-4 text-center"><img class="profile-img" src="images/profile-2.svg" alt="Illustrated profile of Anuarbek Mustafin"><h3 class="h5 mt-3">Anuarbek Mustafin</h3><p class="mb-0">Pages: Quiz and Learn. Assignment 4 contribution: JavaScript accordion, popup interaction, background switcher and live clock.</p></article></div>
+    <div class="col-md-6"><article class="profile-card h-100 p-4 text-center"><img class="profile-img" src="images/profile-3.svg" alt="Illustrated profile of Feruza Zhasan"><h3 class="h5 mt-3">Feruza Zhasan</h3><p class="mb-0">Pages: Results and Contact. Assignment 4 contribution: JavaScript form validation, error messages and interactive testing.</p></article></div>
   </div>
 </section>
 
@@ -99,7 +140,7 @@
         <footer class="site-footer mt-5 pt-4 pb-2 border-top border-secondary text-center">
   <p class="mb-1">Page owner: Anuarbek Mustafin & Feruza Zhasan</p>
   <p class="mb-1">Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p>
-  <p class="mb-0">Web Technologies 1 — Assignment 3 submission</p>
+  <p class="mb-0">Web Technologies 1 — Assignment 4 submission</p>
 </footer>
 
       </div>
