@@ -1,0 +1,9 @@
+{
+  "static_checks": 221,
+  "passed": 221,
+  "failed": [],
+  "browser_validation": "Not completed: local Chromium policy blocks all URL navigation in this environment; run TESTING.md in a regular browser.",
+  "unit_tests": 24,
+  "unit_test_command": "node tests/dom_assignment5.test.cjs",
+  "node_syntax_checks": "passed for assignment4.js and assignment5.js"
+}
