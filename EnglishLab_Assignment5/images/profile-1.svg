@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-labelledby="title">
-  <title id="title">Learner profile illustration</title>
-  <rect width="300" height="300" rx="28" fill="#1b2750"/>
-  <circle cx="150" cy="108" r="60" fill="#7895d6"/>
-  <path d="M48 286c11-76 51-112 102-112s91 36 102 112" fill="#4f7cff"/>
-  <text x="150" y="274" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="23" font-weight="700">Learner</text>
-</svg>
