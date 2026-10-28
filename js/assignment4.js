@@ -43,7 +43,7 @@ function initializeRegistration() {
     return !message;
   }
   form.addEventListener("submit", (event) => {
-    event.preventDefault(); // Do not navigate: the task is local JS validation.
+    event.preventDefault();
     let firstInvalid = null;
     for (const [input, errorId, validator] of fields) {
       if (!validate(input, errorId, validator) && !firstInvalid) firstInvalid = input;
