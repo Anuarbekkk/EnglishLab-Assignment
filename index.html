@@ -1,6 +1,7 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
+  <!-- EnglishLab Team | SE-2505 | Anuarbek Mustafin and Feruza Zhasan -->
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,18 @@
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assignment5.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script>if (!window.jQuery) document.write('<script src="vendor/jquery/jquery-3.7.1.min.js"><\/script>');</script>
+  <script src="js/site.js" defer></script>
   <script src="js/assignment4.js" defer></script>
   <script src="js/assignment5.js" defer></script>
+  <script src="js/assignment6.js" defer></script>
 </head>
 
     <body>
+<div id="siteScrollBar" aria-hidden="true"><span id="siteScrollFill"></span></div>
+<div id="siteToast" role="status" aria-live="polite"></div>
       <a class="skip-link" href="#main-content">Skip to main content</a>
       <div class="container py-3 px-sm-2 px-lg-4">
         <nav class="navbar navbar-expand-xl navbar-dark bg-dark border border-secondary rounded-3 shadow-sm mb-4" aria-label="Main navigation">
@@ -37,6 +45,19 @@
     </div>
   </div>
 </nav>
+<div class="a6-toolbar" role="search" aria-label="Search and site settings">
+  <div class="a6-search-wrap">
+    <label for="siteSearch">Search</label>
+    <input id="siteSearch" type="search" autocomplete="off" placeholder="Find a page or a lesson" aria-controls="siteSuggestions" aria-label="Search EnglishLab">
+    <button id="siteSearchClear" type="button" aria-label="Clear search">Clear</button>
+    <div id="siteSuggestions" class="a6-suggestions" aria-label="Search suggestions" hidden></div>
+  </div>
+  <button class="a6-tool-button" id="siteThemeToggle" type="button" aria-pressed="false">☀ Day mode</button>
+  <button class="a6-tool-button" id="siteSoundToggle" type="button" aria-pressed="false">♫ Sound: Off</button>
+  <button class="a6-tool-button" id="siteCopyLink" type="button">Copy link</button>
+  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search pages or lessons</span>
+</div>
+
 
         <main id="main-content">
         <section class="mb-4">
@@ -50,6 +71,13 @@
 </section>
 
 
+
+
+<div class="a6-home-counts a2-flex-strip mt-3 mb-3" aria-label="EnglishLab in numbers">
+  <span><strong class="a6-counter" data-target="9">9</strong> pages</span>
+  <span><strong class="a6-counter" data-target="8">8</strong> mini lessons</span>
+  <span><strong class="a6-counter" data-target="5">5</strong> rating stars</span>
+</div>
 
 <section class="a4-panel mt-4 mb-4 p-3 p-lg-4" aria-labelledby="interactive-heading">
   <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
@@ -90,20 +118,20 @@
 </div>
 
 <section class="mt-4 a5-home-promo" aria-labelledby="a5-home-heading">
-  <div class="a5-home-promo-copy"><span class="a5-kicker">NEW · ASSIGNMENT 05</span><h2 id="a5-home-heading">Your interactive Practice Lab is ready</h2><p>Explore lessons, rate a session, choose images, and build a study plan with JavaScript and DOM interactions.</p><a href="practice-lab.html" class="btn btn-success btn-lg">Launch Practice Lab</a></div><img src="images/slide-progress.svg" alt="EnglishLab study progress illustration">
+  <div class="a5-home-promo-copy"><span class="a5-kicker">NEW · ASSIGNMENT 05</span><h2 id="a5-home-heading">Your interactive Practice Lab is ready</h2><p>Explore lessons, rate a session, choose images, and build a study plan with JavaScript and DOM interactions.</p><a href="practice-lab.html" class="btn btn-success btn-lg">Launch Practice Lab</a></div><img loading="lazy" src="images/loading.svg" data-src="images/slide-progress.svg" alt="EnglishLab study progress illustration">
 </section>
 
 <section class="mt-lg-4" aria-labelledby="practice-heading">
   <h2 id="practice-heading">What you can practice</h2>
   <div class="row g-4 mt-1">
     <div class="col-sm-12 col-md-6 col-lg-4">
-      <article class="card h-100 shadow-sm"><img src="images/grammar.svg" class="card-img-top" alt="Grammar practice illustration"><div class="card-body d-flex flex-column"><h3 class="card-title h5">Grammar</h3><p class="card-text">Tenses, articles, prepositions and sentence structure.</p><a href="tests.html" class="btn btn-primary mt-auto">Open grammar</a></div></article>
+      <article data-search-item class="card h-100 shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/grammar.svg" class="card-img-top" alt="Grammar practice illustration"><div class="card-body d-flex flex-column"><h3 class="card-title h5">Grammar</h3><p class="card-text">Tenses, articles, prepositions and sentence structure.</p><a href="tests.html" class="btn btn-primary mt-auto">Open grammar</a></div></article>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-4">
-      <article class="card h-100 shadow-sm"><img src="images/vocabulary.svg" class="card-img-top" alt="Vocabulary practice illustration"><div class="card-body d-flex flex-column"><h3 class="card-title h5">Vocabulary</h3><p class="card-text">Words about study, travel, work and everyday life.</p><a href="tests.html" class="btn btn-primary mt-auto">Open vocabulary</a></div></article>
+      <article data-search-item class="card h-100 shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/vocabulary.svg" class="card-img-top" alt="Vocabulary practice illustration"><div class="card-body d-flex flex-column"><h3 class="card-title h5">Vocabulary</h3><p class="card-text">Words about study, travel, work and everyday life.</p><a href="tests.html" class="btn btn-primary mt-auto">Open vocabulary</a></div></article>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-4">
-      <article class="card h-100 shadow-sm"><img src="images/reading.svg" class="card-img-top" alt="Reading practice illustration"><div class="card-body d-flex flex-column"><h3 class="card-title h5">Reading</h3><p class="card-text">Short texts with questions and keyword strategies.</p><a href="tests.html" class="btn btn-primary mt-auto">Open reading</a></div></article>
+      <article data-search-item class="card h-100 shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/reading.svg" class="card-img-top" alt="Reading practice illustration"><div class="card-body d-flex flex-column"><h3 class="card-title h5">Reading</h3><p class="card-text">Short texts with questions and keyword strategies.</p><a href="tests.html" class="btn btn-primary mt-auto">Open reading</a></div></article>
     </div>
   </div>
 </section>
@@ -129,8 +157,8 @@
 <section class="mt-4" aria-labelledby="team-heading">
   <h2 id="team-heading">About the Team Members</h2>
   <div class="row g-4 mt-1">
-    <div class="col-md-6"><article class="profile-card h-100 p-4 text-center"><img class="profile-img" src="images/profile-2.svg" alt="Illustrated profile of Anuarbek Mustafin"><h3 class="h5 mt-3">Anuarbek Mustafin</h3><p class="mb-0">Pages: Quiz and Learn. Assignment 5 contribution: lesson filtering, interactive gallery, DOM updates and animations.</p></article></div>
-    <div class="col-md-6"><article class="profile-card h-100 p-4 text-center"><img class="profile-img" src="images/profile-3.svg" alt="Illustrated profile of Feruza Zhasan"><h3 class="h5 mt-3">Feruza Zhasan</h3><p class="mb-0">Pages: Results and Contact. Assignment 5 contribution: multi-step study planner, rating interface, sound interactions and testing.</p></article></div>
+    <div class="col-md-6"><article class="profile-card h-100 p-4 text-center"><img loading="lazy" class="profile-img" src="images/loading.svg" data-src="images/profile-2.svg" alt="Illustrated profile of Anuarbek Mustafin"><h3 class="h5 mt-3">Anuarbek Mustafin</h3><p class="mb-0">Pages: Quiz and Learn. Assignment 5 contribution: lesson filtering, interactive gallery, DOM updates and animations.</p></article></div>
+    <div class="col-md-6"><article class="profile-card h-100 p-4 text-center"><img loading="lazy" class="profile-img" src="images/loading.svg" data-src="images/profile-3.svg" alt="Illustrated profile of Feruza Zhasan"><h3 class="h5 mt-3">Feruza Zhasan</h3><p class="mb-0">Pages: Results and Contact. Assignment 5 contribution: multi-step study planner, rating interface, sound interactions and testing.</p></article></div>
   </div>
 </section>
 
@@ -147,7 +175,7 @@
         <footer class="site-footer mt-5 pt-4 pb-2 border-top border-secondary text-center">
   <p class="mb-1">Page owner: Anuarbek Mustafin & Feruza Zhasan</p>
   <p class="mb-1">Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p>
-  <p class="mb-0">Web Technologies 1 — Assignment 5 submission</p>
+  <p class="mb-0">Web Technologies 1 — Assignments 1–6 · EnglishLab</p>
 </footer>
 
       </div>

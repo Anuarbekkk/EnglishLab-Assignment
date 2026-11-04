@@ -19,38 +19,9 @@ const practiceLessons = {
   }
 };
 
-const practiceSound = { enabled: false, context: null, activeOscillator: null, lastAt: -1000 };
-
 function playPracticeSound(force = false) {
-  if (!practiceSound.enabled && !force) return;
-  const time = performance.now();
-  if (time - practiceSound.lastAt < 130) return;
-  practiceSound.lastAt = time;
-  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-  if (!AudioContextClass) return;
-  try {
-    if (!practiceSound.context) practiceSound.context = new AudioContextClass();
-    const context = practiceSound.context;
-    if (context.state === "suspended") context.resume().catch(() => {});
-    if (practiceSound.activeOscillator) {
-      try { practiceSound.activeOscillator.stop(); } catch (_) { }
-    }
-    const oscillator = context.createOscillator();
-    const volume = context.createGain();
-    const start = context.currentTime;
-    oscillator.type = "sine";
-    oscillator.frequency.setValueAtTime(660, start);
-    oscillator.frequency.setValueAtTime(880, start + 0.075);
-    volume.gain.setValueAtTime(0.0001, start);
-    volume.gain.exponentialRampToValueAtTime(0.055, start + 0.012);
-    volume.gain.exponentialRampToValueAtTime(0.0001, start + 0.17);
-    oscillator.connect(volume);
-    volume.connect(context.destination);
-    practiceSound.activeOscillator = oscillator;
-    oscillator.onended = () => { if (practiceSound.activeOscillator === oscillator) practiceSound.activeOscillator = null; };
-    oscillator.start(start);
-    oscillator.stop(start + 0.18);
-  } catch (_) { }
+  // Use the same sound settings on every EnglishLab page.
+  if (window.EnglishLabSite) window.EnglishLabSite.playSound(force);
 }
 
 function initializeKeyboardMenu() {
@@ -222,15 +193,20 @@ function initializeInstantTools() {
     playPracticeSound(true);
   });
   soundToggle.addEventListener("click", () => {
-    practiceSound.enabled = !practiceSound.enabled;
-    soundToggle.textContent = `Sound: ${practiceSound.enabled ? "On" : "Off"}`;
-    soundToggle.setAttribute("aria-pressed", String(practiceSound.enabled));
-    if (practiceSound.enabled) playPracticeSound(true);
+    if (window.EnglishLabSite) window.EnglishLabSite.toggleSound();
+    else { // Allow the original standalone Assignment 5 test to run without site.js.
+      const enabled = soundToggle.getAttribute("aria-pressed") !== "true";
+      soundToggle.setAttribute("aria-pressed", String(enabled));
+      soundToggle.textContent = `Sound: ${enabled ? "On" : "Off"}`;
+    }
   });
   themeToggle.addEventListener("click", () => {
-    const day = lab.classList.toggle("a5-day");
-    themeToggle.setAttribute("aria-pressed", String(day));
-    themeToggle.textContent = day ? "Switch to night mode" : "Switch to day mode";
+    if (window.EnglishLabSite) window.EnglishLabSite.toggleTheme();
+    else { // Standalone fallback for the original DOM test.
+      const day = lab.classList.toggle("a5-day");
+      themeToggle.setAttribute("aria-pressed", String(day));
+      themeToggle.textContent = day ? "Switch to night mode" : "Switch to day mode";
+    }
     playPracticeSound();
   });
 }

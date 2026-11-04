@@ -1,0 +1,121 @@
+/* Assignment 6: practical polish, preserving EnglishLab's original blue layout. */
+:root { color-scheme: dark; }
+html[data-theme="light"] {
+  color-scheme: light;
+  --site-bg: #f2f5fc;
+  --site-surface: #ffffff;
+  --site-surface-2: #eaf0fc;
+  --site-border: #b9c9df;
+  --site-text: #172844;
+  --site-muted: #405572;
+  --site-blue: #275ad3;
+  --site-green: #16804b;
+}
+html[data-theme="light"] body { color: var(--site-text); }
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] .legacy-logo { color: #15294a; }
+html[data-theme="light"] .navbar.bg-dark { background-color: #e1eafa !important; border-color: #b5c8e5 !important; }
+html[data-theme="light"] .navbar-dark .navbar-brand,
+html[data-theme="light"] .navbar-dark .nav-link { color: #1b355f; }
+html[data-theme="light"] .navbar-dark .nav-link:hover,
+html[data-theme="light"] .navbar-dark .nav-link.active { color: #0c2e62; background-color: #c2d6f6; }
+html[data-theme="light"] .navbar-toggler { background-color: #263d65; }
+html[data-theme="light"] .dropdown-menu-dark { background-color: #f4f7fc; border: 1px solid #b9c9df; }
+html[data-theme="light"] .dropdown-menu-dark .dropdown-item { color: #213958; }
+html[data-theme="light"] .dropdown-menu-dark .dropdown-item:hover { background-color: #dfeaff; color: #173f80; }
+html[data-theme="light"] .text-secondary,
+html[data-theme="light"] .text-secondary-emphasis,
+html[data-theme="light"] small.text-secondary { color: #536681 !important; }
+html:not([data-theme="light"]) .text-secondary,
+html:not([data-theme="light"]) .text-secondary-emphasis { color: #b8c6dc !important; }
+html[data-theme="light"] .form-control,
+html[data-theme="light"] .form-select,
+html[data-theme="light"] .input-group-text { background-color: #fff; color: #1b2a44; border-color: #a8bdd9; }
+html[data-theme="light"] .form-control::placeholder { color: #60728c; }
+html[data-theme="light"] .form-control:focus,
+html[data-theme="light"] .form-select:focus { background-color: #fff; color: #1b2a44; }
+html[data-theme="light"] .btn-outline-light { color: #25406b; border-color: #6885aa; }
+html[data-theme="light"] .btn-outline-light:hover { color: #fff; background-color: #25406b; }
+html[data-theme="light"] .btn-outline-secondary { color: #2f496e; border-color: #7894b9; }
+html[data-theme="light"] .card-title,
+html[data-theme="light"] .a5-lesson h3 { color: #15294a; }
+html[data-theme="light"] .table-dark,
+html[data-theme="light"] .results-table { --bs-table-bg: #fff; --bs-table-color: #172844; --bs-table-border-color: #cad5e6; --bs-table-striped-bg: #eff4fc; --bs-table-hover-bg: #e2ecfa; }
+html[data-theme="light"] .radio-option { background: #f0f5ff; border-color: #bac9e4; }
+html[data-theme="light"] .radio-option:hover { background: #e1ecff; }
+html[data-theme="light"] .radio-option input:checked ~ .option-text { color: #123259; }
+html[data-theme="light"] .a4-panel,
+html[data-theme="light"] .a4-mini-card,
+html[data-theme="light"] .a4-dialog,
+html[data-theme="light"] .a4-panel h2 { color: #15294a; }
+html[data-theme="light"] .a4-modal-overlay { background: rgba(10,25,53,.62); }
+html[data-theme="light"] .a5-lab.a5-day { background: transparent; }
+html[data-theme="light"] .a5-lab.a5-day .a5-hero h1,
+html[data-theme="light"] .a5-lab.a5-day .a5-hero h2 { color: #122542; }
+html[data-theme="light"] .a5-lab.a5-day .a5-section h2,
+html[data-theme="light"] .a5-lab.a5-day .a5-section h3 { color: #142747; }
+html[data-theme="light"] .legacy-nav a { color: #244064; }
+html[data-theme="light"] .legacy-nav a.active,
+html[data-theme="light"] .legacy-nav a:hover { color: #103260; background: #d5e4fa; }
+html[data-theme="light"] .legacy-footer,
+html[data-theme="light"] .site-footer { border-color: #b9c9df !important; }
+html[data-theme="light"] code { color: #1b5585; }
+html[data-theme="light"] .a5-stats > div { color: #233856; }
+html[data-theme="light"] .a5-stat-number { color: #132d54; }
+html[data-theme="light"] .a5-lab .a5-form-error { color: #b02439; }
+html[data-theme="light"] .a4-feedback[data-state="success"] { color: #116d47; }
+html[data-theme="light"] .a4-feedback[data-state="error"] { color: #b52135; }
+
+/* Shared controls match the old Bootstrap layout instead of a new redesign. */
+.a6-toolbar { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; margin: 0 0 1.25rem; padding: .7rem .9rem; border: 1px solid var(--site-border); border-radius: .65rem; background: var(--site-surface); }
+.legacy-page > .a6-toolbar { max-width: 1180px; margin: 0 auto 1.25rem; }
+.a6-search-wrap { display: flex; align-items: center; gap: .35rem; flex: 1 1 310px; min-width: 200px; position: relative; }
+.a6-search-wrap label { flex: 0 0 auto; font-size: .88rem; color: var(--site-muted); }
+.a6-search-wrap input { min-width: 0; flex: 1; background: var(--site-surface-2); color: var(--site-text); border: 1px solid var(--site-border); border-radius: .42rem; padding: .43rem .65rem; }
+.a6-search-wrap input::placeholder { color: var(--site-muted); }
+.a6-search-wrap button,
+.a6-tool-button { background: var(--site-surface-2); color: var(--site-text); border: 1px solid var(--site-border); border-radius: .4rem; padding: .45rem .65rem; font-size: .85rem; cursor: pointer; }
+.a6-search-wrap button:hover,
+.a6-tool-button:hover { border-color: var(--site-blue); }
+.a6-toolbar-note { flex: 1 1 100%; color: var(--site-muted); font-size: .79rem; }
+.a6-suggestions { position: absolute; left: 0; right: 0; top: calc(100% + 4px); background: var(--site-surface); border: 1px solid var(--site-border); border-radius: .5rem; z-index: 1100; box-shadow: 0 .5rem 1rem #0004; overflow: hidden; }
+.a6-suggestion { display: block; padding: .6rem .9rem; color: var(--site-text); text-decoration: none; }
+.a6-suggestion:hover,.a6-suggestion:focus { background: var(--site-surface-2); color: var(--site-blue); }
+.a6-suggestion-empty { display: block; padding: .6rem; color: var(--site-muted); }
+#siteScrollBar { position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 2100; pointer-events: none; }
+#siteScrollFill { display: block; height: 100%; width: 0; background: linear-gradient(90deg,#2488e5,#27bd89); transition: width .1s linear; }
+#siteToast { display: none; position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 2200; max-width: 330px; background: #1a3d70; color: #fff; padding: .85rem 1rem; border: 1px solid #64a9fc; border-radius: .5rem; box-shadow: 0 .4rem 1rem #0005; }
+mark.a6-match { background: #ffe17b; color: #192439; border-radius: .12rem; padding: 0 .07em; }
+.a6-spinner { display: inline-block; width: .85rem; height: .85rem; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; vertical-align: -.1rem; animation: a6-spin .65s linear infinite; }
+@keyframes a6-spin { to { transform: rotate(360deg); } }
+.a6-quiz-feedback { margin-top: .75rem; color: var(--site-text); font-weight: 600; }
+.a6-result { border: 1px solid var(--site-border); background: var(--site-surface); border-radius: .7rem; padding: 1rem; margin: 1rem 0; }
+.a6-counter { font-variant-numeric: tabular-nums; }
+[hidden] { display: none !important; }
+@media (max-width: 600px) { .a6-toolbar { gap: .5rem; } .a6-search-wrap { flex-basis: 100%; } .a6-toolbar-note { font-size: .75rem; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } #siteScrollFill { transition:none; } .a6-spinner { animation:none; } }
+html[data-theme="light"] .a4-panel { background: linear-gradient(135deg, #edf3ff, #e3ecfb); border-color: #b6cae8; }
+html[data-theme="light"] .a4-mini-card { background: #fff; border-color: #b9c9df; }
+html[data-theme="light"] .a4-clock { color: #142a4d !important; }
+html[data-theme="light"] .a4-chip { background: #d8e7ff; border-color: #b2c8eb; color: #21426d; }
+html[data-theme="light"] .a4-dialog { background: #fff; color: #172844; border-color: #9fb5d5; }
+html[data-theme="light"] .a4-close { color: #172844; }
+html[data-theme="light"] .a4-field-error { color: #a72036; }
+html[data-theme="light"] .faq-question { color: #182d4d; }
+html[data-theme="light"] .a5-home-promo h2 { color: #fff; }
+html[data-theme="light"] .a5-home-promo .a5-kicker { color: #86edc9; }
+html[data-theme="light"] .a5-home-promo .btn-success { color: #fff; }
+html[data-theme="light"] .a5-lab .a5-hero .a5-accent { color: #0b806c; }
+html[data-theme="light"] .a5-lab .a5-hero p { color: #31516b; }
+html[data-theme="light"] .a5-lab.a5-day .a5-lesson-tip p { color: #183452; }
+html[data-theme="light"] .a5-lab.a5-day .a5-bottom-note strong { color: #17365d; }
+html[data-theme="light"] .a5-lab.a5-day .a5-lesson-meta { color: #0c7669; }
+html[data-theme="light"] .a5-lab.a5-day .a5-lesson h3 { color: #17345b; }
+html[data-theme="light"] .a5-lab.a5-day .a5-small-note { color: #435c7a; }
+html[data-theme="light"] .a5-lab.a5-day .a5-choice span { color: #153450; }
+html[data-theme="light"] .a5-lab.a5-day .a5-choice input:checked+span { color: #fff; }
+/* Modest spacing improvements that do not change the original visual identity. */
+.hero-img { max-height: 375px; }
+a:not([href]), button:not([type]) { cursor: pointer; }

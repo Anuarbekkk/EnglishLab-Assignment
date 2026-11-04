@@ -1,6 +1,7 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
+  <!-- EnglishLab Team | SE-2505 | Anuarbek Mustafin and Feruza Zhasan -->
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,18 @@
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assignment5.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script>if (!window.jQuery) document.write('<script src="vendor/jquery/jquery-3.7.1.min.js"><\/script>');</script>
+  <script src="js/site.js" defer></script>
   <script src="js/assignment4.js" defer></script>
   <script src="js/assignment5.js" defer></script>
+  <script src="js/assignment6.js" defer></script>
 </head>
 
     <body>
+<div id="siteScrollBar" aria-hidden="true"><span id="siteScrollFill"></span></div>
+<div id="siteToast" role="status" aria-live="polite"></div>
       <a class="skip-link" href="#main-content">Skip to main content</a>
       <div class="container py-3 px-sm-2 px-lg-4">
         <nav class="navbar navbar-expand-xl navbar-dark bg-dark border border-secondary rounded-3 shadow-sm mb-4" aria-label="Main navigation">
@@ -37,6 +45,19 @@
     </div>
   </div>
 </nav>
+<div class="a6-toolbar" role="search" aria-label="Search and site settings">
+  <div class="a6-search-wrap">
+    <label for="siteSearch">Search</label>
+    <input id="siteSearch" type="search" autocomplete="off" placeholder="Find a page or a lesson" aria-controls="siteSuggestions" aria-label="Search EnglishLab">
+    <button id="siteSearchClear" type="button" aria-label="Clear search">Clear</button>
+    <div id="siteSuggestions" class="a6-suggestions" aria-label="Search suggestions" hidden></div>
+  </div>
+  <button class="a6-tool-button" id="siteThemeToggle" type="button" aria-pressed="false">☀ Day mode</button>
+  <button class="a6-tool-button" id="siteSoundToggle" type="button" aria-pressed="false">♫ Sound: Off</button>
+  <button class="a6-tool-button" id="siteCopyLink" type="button">Copy link</button>
+  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search pages or lessons</span>
+</div>
+
 
         <main id="main-content">
         <section>
@@ -45,9 +66,9 @@
 
   <h2>Assignment 2 Flexbox lesson cards</h2>
   <div class="legacy-flex-cards mb-4">
-    <article class="legacy-card"><img src="images/grammar.svg" alt="Present Simple lesson illustration"><h3>Present Simple</h3><p>Use the base verb with I, you, we and they. Add -s or -es with he, she and it.</p><a class="legacy-btn" href="quiz.html">Practice</a></article>
-    <article class="legacy-card"><img src="images/vocabulary.svg" alt="Vocabulary lesson illustration"><h3>Topic Words</h3><p>Group new vocabulary by topic and create one sentence for every new word.</p><a class="legacy-btn" href="tests.html">Open tests</a></article>
-    <article class="legacy-card"><img src="images/reading.svg" alt="Reading lesson illustration"><h3>Reading Strategy</h3><p>Read the questions first, then scan the text for keywords before reading closely.</p><a class="legacy-btn" href="tests.html">Try reading</a></article>
+    <article data-search-item class="legacy-card"><img src="images/grammar.svg" alt="Present Simple lesson illustration"><h3>Present Simple</h3><p>Use the base verb with I, you, we and they. Add -s or -es with he, she and it.</p><a class="legacy-btn" href="quiz.html">Practice</a></article>
+    <article data-search-item class="legacy-card"><img loading="lazy" src="images/loading.svg" data-src="images/vocabulary.svg" alt="Vocabulary lesson illustration"><h3>Topic Words</h3><p>Group new vocabulary by topic and create one sentence for every new word.</p><a class="legacy-btn" href="tests.html">Open tests</a></article>
+    <article data-search-item class="legacy-card"><img loading="lazy" src="images/loading.svg" data-src="images/reading.svg" alt="Reading lesson illustration"><h3>Reading Strategy</h3><p>Read the questions first, then scan the text for keywords before reading closely.</p><a class="legacy-btn" href="tests.html">Try reading</a></article>
   </div>
 </section>
 
@@ -69,7 +90,7 @@
 
 <section class="mt-4" aria-labelledby="faqHeading">
   <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3"><div><p class="a4-eyebrow mb-1">ASSIGNMENT 04 / JAVASCRIPT</p>
-    <h2 id="faqHeading" class="mb-0">Frequently Asked Questions</h2></div><span class="a4-chip">Click to expand</span></div>
+    <h2 id="faqHeading" class="mb-0">Frequently Asked Questions</h2></div><button class="a4-chip a4-chip-button" id="faqToggleAll" type="button" aria-controls="faqList" aria-expanded="false">Expand all</button></div>
   <p>Each answer starts collapsed and opens smoothly when its question is clicked.</p>
   <div class="faq-list" id="faqList">
     <div class="faq-item"><h3 class="m-0"><button type="button" class="faq-question" id="faqBtn1" aria-expanded="false" aria-controls="faqAnswer1">How can I improve my grammar? <span class="faq-icon" aria-hidden="true">+</span></button></h3>
@@ -86,13 +107,17 @@
 <section class="mt-4">
   <h2>Study Tips</h2>
   <ul class="feature-list"><li>Practice a little every day.</li><li>Write new words in full sentences.</li><li>Repeat a test after reading the lesson again.</li></ul>
+  <div class="d-flex flex-wrap gap-2 align-items-center">
+    <p class="mb-0" id="studyPhrase"><strong>Useful phrase:</strong> Practice makes progress.</p>
+    <button type="button" class="btn btn-outline-light btn-sm" data-copy-target="#studyPhrase">Copy phrase</button>
+  </div>
 </section>
 
         </main>
         <footer class="site-footer mt-5 pt-4 pb-2 border-top border-secondary text-center">
   <p class="mb-1">Page owner: Anuarbek Mustafin</p>
   <p class="mb-1">Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p>
-  <p class="mb-0">Web Technologies 1 — Assignment 5 submission</p>
+  <p class="mb-0">Web Technologies 1 — Assignments 1–6 · EnglishLab</p>
 </footer>
 
       </div>

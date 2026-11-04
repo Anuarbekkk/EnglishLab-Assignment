@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- EnglishLab Team | SE-2505 | Anuarbek Mustafin and Feruza Zhasan -->
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,36 @@
   <title>EnglishLab | CSS Grid Image Gallery</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assignment5.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script>if (!window.jQuery) document.write('<script src="vendor/jquery/jquery-3.7.1.min.js"><\/script>');</script>
+  <script src="js/site.js" defer></script>
   <script src="js/assignment4.js" defer></script>
   <script src="js/assignment5.js" defer></script>
+  <script src="js/assignment6.js" defer></script>
 </head>
 
 <body class="legacy-page">
+<div id="siteScrollBar" aria-hidden="true"><span id="siteScrollFill"></span></div>
+<div id="siteToast" role="status" aria-live="polite"></div>
   <header class="legacy-header" id="main-header"><a class="legacy-logo" href="index.html">EnglishLab</a><nav aria-label="Pure CSS navigation"><ul class="legacy-nav"><li><a href="index.html">Dashboard</a></li><li><a href="tests.html">Tests</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="learn.html">Learn</a></li><li><a href="results.html">Results</a></li><li><a href="contact.html">Contact</a></li><li><a href="practice-lab.html">Practice Lab</a></li><li><a href="grid-layout.html">Grid Areas</a></li><li><a class="active" href="gallery.html">Gallery</a></li></ul></nav></header>
+<div class="a6-toolbar" role="search" aria-label="Search and site settings">
+  <div class="a6-search-wrap">
+    <label for="siteSearch">Search</label>
+    <input id="siteSearch" type="search" autocomplete="off" placeholder="Find a page or a lesson" aria-controls="siteSuggestions" aria-label="Search EnglishLab">
+    <button id="siteSearchClear" type="button" aria-label="Clear search">Clear</button>
+    <div id="siteSuggestions" class="a6-suggestions" aria-label="Search suggestions" hidden></div>
+  </div>
+  <button class="a6-tool-button" id="siteThemeToggle" type="button" aria-pressed="false">☀ Day mode</button>
+  <button class="a6-tool-button" id="siteSoundToggle" type="button" aria-pressed="false">♫ Sound: Off</button>
+  <button class="a6-tool-button" id="siteCopyLink" type="button">Copy link</button>
+  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search pages or lessons</span>
+</div>
+
   <main class="legacy-content" id="main-content">
     <h1>CSS Grid Image Gallery</h1>
     <p>Assignment 2: nine local images in equal-width CSS Grid columns with gaps and hover captions.</p>
-    <section class="gallery" aria-label="Nine English learning images"><figure class="gallery-item"><img src="images/grammar.svg" alt="Grammar illustration"><figcaption class="caption">Grammar</figcaption></figure><figure class="gallery-item"><img src="images/reading.svg" alt="Reading illustration"><figcaption class="caption">Reading</figcaption></figure><figure class="gallery-item"><img src="images/vocabulary.svg" alt="Vocabulary illustration"><figcaption class="caption">Vocabulary</figcaption></figure><figure class="gallery-item"><img src="images/lesson.svg" alt="Lesson illustration"><figcaption class="caption">Lesson</figcaption></figure><figure class="gallery-item"><img src="images/hero-study.svg" alt="Study illustration"><figcaption class="caption">Study</figcaption></figure><figure class="gallery-item"><img src="images/slide-listening.svg" alt="Listening illustration"><figcaption class="caption">Listening</figcaption></figure><figure class="gallery-item"><img src="images/slide-speaking.svg" alt="Speaking illustration"><figcaption class="caption">Speaking</figcaption></figure><figure class="gallery-item"><img src="images/slide-writing.svg" alt="Writing illustration"><figcaption class="caption">Writing</figcaption></figure><figure class="gallery-item"><img src="images/slide-progress.svg" alt="Progress illustration"><figcaption class="caption">Progress</figcaption></figure></section>
+    <section class="gallery" aria-label="Nine English learning images"><figure data-search-item class="gallery-item"><img src="images/grammar.svg" alt="Grammar illustration"><figcaption class="caption">Grammar</figcaption></figure><figure data-search-item class="gallery-item"><img loading="lazy" src="images/loading.svg" data-src="images/reading.svg" alt="Reading illustration"><figcaption class="caption">Reading</figcaption></figure><figure data-search-item class="gallery-item"><img loading="lazy" src="images/loading.svg" data-src="images/vocabulary.svg" alt="Vocabulary illustration"><figcaption class="caption">Vocabulary</figcaption></figure><figure data-search-item class="gallery-item"><img loading="lazy" src="images/loading.svg" data-src="images/lesson.svg" alt="Lesson illustration"><figcaption class="caption">Lesson</figcaption></figure><figure data-search-item class="gallery-item"><img loading="lazy" src="images/loading.svg" data-src="images/hero-study.svg" alt="Study illustration"><figcaption class="caption">Study</figcaption></figure><figure data-search-item class="gallery-item"><img loading="lazy" src="images/loading.svg" data-src="images/slide-listening.svg" alt="Listening illustration"><figcaption class="caption">Listening</figcaption></figure><figure data-search-item class="gallery-item"><img loading="lazy" src="images/loading.svg" data-src="images/slide-speaking.svg" alt="Speaking illustration"><figcaption class="caption">Speaking</figcaption></figure><figure data-search-item class="gallery-item"><img loading="lazy" src="images/loading.svg" data-src="images/slide-writing.svg" alt="Writing illustration"><figcaption class="caption">Writing</figcaption></figure><figure data-search-item class="gallery-item"><img loading="lazy" src="images/loading.svg" data-src="images/slide-progress.svg" alt="Progress illustration"><figcaption class="caption">Progress</figcaption></figure></section>
   </main>
   <footer class="legacy-footer"><p>Page owner: Feruza Zhasan</p><p>Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p></footer>
 </body>

@@ -94,17 +94,43 @@ function initializeContact() {
 }
 
 function initializeFAQ() {
-  document.querySelectorAll(".faq-question").forEach((button) => {
+  const questions = [...document.querySelectorAll(".faq-question")];
+  const expandAllButton = byId("faqToggleAll");
+
+  // Use one function for individual questions and the Expand all button.
+  function setAnswerOpen(button, open) {
     const answer = byId(button.getAttribute("aria-controls"));
     if (!answer) return;
+    button.setAttribute("aria-expanded", String(open));
+    answer.setAttribute("aria-hidden", String(!open));
+    answer.inert = !open;
+    button.closest(".faq-item").classList.toggle("is-open", open);
+  }
+
+  // Update the text even if a question is opened separately.
+  function updateExpandAllButton() {
+    if (!expandAllButton || !questions.length) return;
+    const allOpen = questions.every(button => button.getAttribute("aria-expanded") === "true");
+    expandAllButton.textContent = allOpen ? "Collapse all" : "Expand all";
+    expandAllButton.setAttribute("aria-expanded", String(allOpen));
+  }
+
+  questions.forEach((button) => {
+    if (!byId(button.getAttribute("aria-controls"))) return;
     button.addEventListener("click", () => {
-      const opening = button.getAttribute("aria-expanded") !== "true";
-      button.setAttribute("aria-expanded", String(opening));
-      answer.setAttribute("aria-hidden", String(!opening));
-      answer.inert = !opening;
-      button.closest(".faq-item").classList.toggle("is-open", opening);
+      setAnswerOpen(button, button.getAttribute("aria-expanded") !== "true");
+      updateExpandAllButton();
     });
   });
+
+  if (expandAllButton) {
+    expandAllButton.addEventListener("click", () => {
+      const allOpen = questions.every(button => button.getAttribute("aria-expanded") === "true");
+      questions.forEach(button => setAnswerOpen(button, !allOpen));
+      updateExpandAllButton();
+    });
+  }
+  updateExpandAllButton();
 }
 
 function initializePopup() {
@@ -165,17 +191,30 @@ function initializeBackgroundChanger() {
   const button = byId("changeBgBtn");
   if (!button) return;
   const status = byId("colorStatus");
-  const themes = [
-    { color: "#0a122b", name: "Midnight" },
-    { color: "#182f40", name: "Ocean" },
-    { color: "#30223f", name: "Violet" },
-    { color: "#18382e", name: "Forest" }
-  ];
+  const themes = {
+    dark: [
+      { color: "#0a122b", name: "Midnight" },
+      { color: "#182f40", name: "Ocean" },
+      { color: "#30223f", name: "Violet" },
+      { color: "#18382e", name: "Forest" }
+    ],
+    light: [
+      { color: "#f2f5fc", name: "Cloud" },
+      { color: "#e5f5fa", name: "Sky" },
+      { color: "#f2ecfb", name: "Lavender" },
+      { color: "#e8f7eb", name: "Mint" }
+    ]
+  };
   let index = 0;
+  document.addEventListener("englishlab:settings", () => {
+    index = 0;
+    if (status) status.textContent = "Background reset to match the selected theme.";
+  });
   button.addEventListener("click", () => {
-    index = (index + 1) % themes.length;
-    document.body.style.setProperty("--site-bg", themes[index].color);
-    if (status) status.textContent = `Theme ${index + 1} of ${themes.length} · ${themes[index].name}`;
+    const palette = themes[window.EnglishLabSite?.getTheme() || "dark"];
+    index = (index + 1) % palette.length;
+    document.body.style.setProperty("--site-bg", palette[index].color);
+    if (status) status.textContent = `Color ${index + 1} of ${palette.length} · ${palette[index].name}`;
   });
 }
 

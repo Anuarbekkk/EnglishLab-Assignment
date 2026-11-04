@@ -1,6 +1,7 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
+  <!-- EnglishLab Team | SE-2505 | Anuarbek Mustafin and Feruza Zhasan -->
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,18 @@
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assignment5.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+  <script>if (!window.jQuery) document.write('<script src="vendor/jquery/jquery-3.7.1.min.js"><\/script>');</script>
+  <script src="js/site.js" defer></script>
   <script src="js/assignment4.js" defer></script>
   <script src="js/assignment5.js" defer></script>
+  <script src="js/assignment6.js" defer></script>
 </head>
 
     <body>
+<div id="siteScrollBar" aria-hidden="true"><span id="siteScrollFill"></span></div>
+<div id="siteToast" role="status" aria-live="polite"></div>
       <a class="skip-link" href="#main-content">Skip to main content</a>
       <div class="container py-3 px-sm-2 px-lg-4">
         <nav class="navbar navbar-expand-xl navbar-dark bg-dark border border-secondary rounded-3 shadow-sm mb-4" aria-label="Main navigation">
@@ -37,6 +45,19 @@
     </div>
   </div>
 </nav>
+<div class="a6-toolbar" role="search" aria-label="Search and site settings">
+  <div class="a6-search-wrap">
+    <label for="siteSearch">Search</label>
+    <input id="siteSearch" type="search" autocomplete="off" placeholder="Find a page or a lesson" aria-controls="siteSuggestions" aria-label="Search EnglishLab">
+    <button id="siteSearchClear" type="button" aria-label="Clear search">Clear</button>
+    <div id="siteSuggestions" class="a6-suggestions" aria-label="Search suggestions" hidden></div>
+  </div>
+  <button class="a6-tool-button" id="siteThemeToggle" type="button" aria-pressed="false">☀ Day mode</button>
+  <button class="a6-tool-button" id="siteSoundToggle" type="button" aria-pressed="false">♫ Sound: Off</button>
+  <button class="a6-tool-button" id="siteCopyLink" type="button">Copy link</button>
+  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search pages or lessons</span>
+</div>
+
 
         <main id="main-content">
         <section>
@@ -48,9 +69,11 @@
     <span><strong>Read:</strong> identify the grammar clue</span><span><strong>Choose:</strong> select one option</span><span><strong>Check:</strong> review the Results page</span>
   </div>
 
-  <form action="results.html" method="get" class="quiz-form p-3 p-lg-4">
+  <form id="grammarQuiz" action="results.html" method="get" novalidate class="quiz-form p-3 p-lg-4">
     <fieldset class="question"><legend class="h5">1. Choose the correct sentence.</legend><div class="radio-group"><label class="radio-option"><input type="radio" name="q1" value="a" required><span class="letter-circle">A</span><span class="option-text">She go to university every day.</span></label><label class="radio-option"><input type="radio" name="q1" value="b" required><span class="letter-circle">B</span><span class="option-text">She goes to university every day.</span></label><label class="radio-option"><input type="radio" name="q1" value="c" required><span class="letter-circle">C</span><span class="option-text">She going to university every day.</span></label><label class="radio-option"><input type="radio" name="q1" value="d" required><span class="letter-circle">D</span><span class="option-text">She gone to university every day.</span></label></div></fieldset><fieldset class="question"><legend class="h5">2. I have lived here ___ 2024.</legend><div class="radio-group"><label class="radio-option"><input type="radio" name="q2" value="a" required><span class="letter-circle">A</span><span class="option-text">for</span></label><label class="radio-option"><input type="radio" name="q2" value="b" required><span class="letter-circle">B</span><span class="option-text">since</span></label><label class="radio-option"><input type="radio" name="q2" value="c" required><span class="letter-circle">C</span><span class="option-text">from</span></label><label class="radio-option"><input type="radio" name="q2" value="d" required><span class="letter-circle">D</span><span class="option-text">during</span></label></div></fieldset><fieldset class="question"><legend class="h5">3. This book is ___ than the previous one.</legend><div class="radio-group"><label class="radio-option"><input type="radio" name="q3" value="a" required><span class="letter-circle">A</span><span class="option-text">interesting</span></label><label class="radio-option"><input type="radio" name="q3" value="b" required><span class="letter-circle">B</span><span class="option-text">more interesting</span></label><label class="radio-option"><input type="radio" name="q3" value="c" required><span class="letter-circle">C</span><span class="option-text">most interesting</span></label><label class="radio-option"><input type="radio" name="q3" value="d" required><span class="letter-circle">D</span><span class="option-text">interestingly</span></label></div></fieldset><fieldset class="question"><legend class="h5">4. I saw ___ interesting documentary yesterday.</legend><div class="radio-group"><label class="radio-option"><input type="radio" name="q4" value="a" required><span class="letter-circle">A</span><span class="option-text">a</span></label><label class="radio-option"><input type="radio" name="q4" value="b" required><span class="letter-circle">B</span><span class="option-text">an</span></label><label class="radio-option"><input type="radio" name="q4" value="c" required><span class="letter-circle">C</span><span class="option-text">the</span></label><label class="radio-option"><input type="radio" name="q4" value="d" required><span class="letter-circle">D</span><span class="option-text">no article</span></label></div></fieldset><fieldset class="question"><legend class="h5">5. They ___ the project last night.</legend><div class="radio-group"><label class="radio-option"><input type="radio" name="q5" value="a" required><span class="letter-circle">A</span><span class="option-text">finish</span></label><label class="radio-option"><input type="radio" name="q5" value="b" required><span class="letter-circle">B</span><span class="option-text">finished</span></label><label class="radio-option"><input type="radio" name="q5" value="c" required><span class="letter-circle">C</span><span class="option-text">have finish</span></label><label class="radio-option"><input type="radio" name="q5" value="d" required><span class="letter-circle">D</span><span class="option-text">finishing</span></label></div></fieldset>
     <button type="submit" class="btn btn-success btn-lg">Submit quiz</button>
+    <div id="quizFeedback" class="a6-quiz-feedback" role="status" aria-live="polite"></div>
+    <a id="quizResultLink" href="results.html" class="btn btn-primary mt-2" hidden>View your results</a>
   </form>
 </section>
 
@@ -58,7 +81,7 @@
         <footer class="site-footer mt-5 pt-4 pb-2 border-top border-secondary text-center">
   <p class="mb-1">Page owner: Anuarbek Mustafin</p>
   <p class="mb-1">Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p>
-  <p class="mb-0">Web Technologies 1 — Assignment 5 submission</p>
+  <p class="mb-0">Web Technologies 1 — Assignments 1–6 · EnglishLab</p>
 </footer>
 
       </div>
