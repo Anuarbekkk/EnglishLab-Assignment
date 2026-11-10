@@ -1,127 +1,146 @@
 "use strict";
 
-// Assignment 6: small, readable jQuery features added to our existing EnglishLab.
+// Lightweight jQuery enhancements: current-page search, animation, feedback and image loading.
 $(document).ready(function () {
   console.log("jQuery is ready!");
 
+  // Find text inside the CURRENT page. No navbar search, and no cards disappear.
+  // jQuery live search / autocomplete / highlighting, with keyboard navigation.
   const $search = $("#siteSearch");
   const $suggestions = $("#siteSuggestions");
   const $searchStatus = $("#siteSearchStatus");
-  const pages = [
-    ["Dashboard", "index.html"], ["Tests", "tests.html"],
-    ["Grammar Quiz", "quiz.html"], ["Learn", "learn.html"],
-    ["Results", "results.html"], ["Contact", "contact.html"],
-    ["Practice Lab", "practice-lab.html"],
-    ["Grid Areas", "grid-layout.html"], ["Image Gallery", "gallery.html"],
-    ["Grammar Basics", "tests.html"], ["Vocabulary Challenge", "tests.html"],
-    ["Reading Practice", "tests.html"],
-    ["Present Simple", "practice-lab.html#lesson-explorer"],
-    ["Past Tense", "practice-lab.html#lesson-explorer"],
-    ["Travel Words", "practice-lab.html#lesson-explorer"],
-    ["Work Vocabulary", "practice-lab.html#lesson-explorer"],
-    ["Reading for Gist", "practice-lab.html#lesson-explorer"],
-    ["Reading for Detail", "practice-lab.html#lesson-explorer"],
-    ["Daily Conversation", "practice-lab.html#lesson-explorer"],
-    ["Fluent Answers", "practice-lab.html#lesson-explorer"]
-  ];
+  const $copyResults = $("#siteCopyResults");
+  const $previous = $("#siteMatchPrevious");
+  const $next = $("#siteMatchNext");
+  const main = document.querySelector("#main-content") || document.querySelector("main");
+  let foundMarks = [];
+  let activeIndex = -1;
 
   function clearHighlights() {
-    $("mark.a6-match").each(function () {
-      $(this).replaceWith(document.createTextNode($(this).text()));
+    const changedParents = new Set();
+    if (!main) return;
+    main.querySelectorAll("mark.a6-match").forEach(mark => {
+      const parent = mark.parentNode;
+      if (!parent) return;
+      parent.replaceChild(document.createTextNode(mark.textContent), mark);
+      changedParents.add(parent);
     });
+    changedParents.forEach(parent => parent.normalize());
+    foundMarks = [];
+    activeIndex = -1;
   }
 
-  // Task 3: highlight matching text without deleting nested HTML or buttons.
-  function highlightWords(keyword) {
+  function searchableNode(node) {
+    const parent = node.parentElement;
+    if (!parent || !node.nodeValue.trim() || !parent.getClientRects().length) return false;
+    if (parent.closest('script,style,noscript,svg,textarea,option,select,[hidden],[aria-hidden="true"],[inert],.a6-no-search,.a6-suggestions')) return false;
+    // The text has to be visible in this page, not in a collapsed FAQ/carousel.
+    const hiddenAncestor = parent.closest('.carousel-item:not(.active),.faq-answer:not([aria-hidden="false"])');
+    return !hiddenAncestor;
+  }
+
+  function highlightPage(query) {
     clearHighlights();
-    if (!keyword) return;
-    const main = document.querySelector("main");
-    if (!main) return;
-    const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+    if (!main || !query) return;
     const textNodes = [];
+    const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: node => searchableNode(node) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+    });
     let node;
-    while ((node = walker.nextNode())) {
-      if (node.nodeValue.trim() && node.parentElement &&
-          node.parentElement.closest("h1,h2,h3,p,li,figcaption,td") &&
-          !node.parentElement.closest("a,button,script,style,mark,[hidden]")) {
-        textNodes.push(node);
-      }
-    }
+    while ((node = walker.nextNode())) textNodes.push(node);
+    const lowerQuery = query.toLocaleLowerCase();
     textNodes.forEach(textNode => {
       const original = textNode.nodeValue;
       const lower = original.toLocaleLowerCase();
-      const word = keyword.toLocaleLowerCase();
-      if (!lower.includes(word)) return;
+      if (!lower.includes(lowerQuery)) return;
       const fragment = document.createDocumentFragment();
-      let start = 0;
-      let at = lower.indexOf(word);
+      let from = 0, at = lower.indexOf(lowerQuery);
       while (at !== -1) {
-        fragment.append(document.createTextNode(original.slice(start, at)));
-        const mark = document.createElement("mark");
-        mark.className = "a6-match";
-        mark.textContent = original.slice(at, at + word.length);
-        fragment.append(mark);
-        start = at + word.length;
-        at = lower.indexOf(word, start);
+        fragment.appendChild(document.createTextNode(original.slice(from, at)));
+        const mark = document.createElement('mark');
+        mark.className = 'a6-match';
+        mark.textContent = original.slice(at, at + query.length);
+        fragment.appendChild(mark);
+        foundMarks.push(mark);
+        from = at + query.length;
+        at = lower.indexOf(lowerQuery, from);
       }
-      fragment.append(document.createTextNode(original.slice(start)));
+      fragment.appendChild(document.createTextNode(original.slice(from)));
       textNode.replaceWith(fragment);
     });
   }
 
-  // Tasks 1 and 2: filter page cards and suggest site pages as the user types.
-  function applySearch() {
-    const keyword = $search.val().trim().toLocaleLowerCase();
-    const $items = $("[data-search-item]");
-    let matches = 0;
-    $items.each(function () {
-      const text = ($(this).attr("data-search") || $(this).text()).toLocaleLowerCase();
-      const visible = !keyword || text.includes(keyword);
-      $(this).prop("hidden", !visible);
-      if (visible) matches++;
-    });
-    if ($items.length) $searchStatus.text(keyword ? `${matches} of ${$items.length} items found` : "Search pages or lessons");
-    else $searchStatus.text("Search pages or lessons");
+  function matchExcerpt(mark) {
+    const container = mark.closest('h1,h2,h3,h4,p,li,td,th,figcaption,label,button,a,legend,.a5-lesson') || mark.parentElement;
+    return (container?.textContent || mark.textContent).replace(/\s+/g, ' ').trim().slice(0, 170);
+  }
 
+  function setActiveMatch(index, shouldScroll) {
+    if (!foundMarks.length) return;
+    if (activeIndex >= 0) foundMarks[activeIndex]?.classList.remove('a6-match-current');
+    activeIndex = (index + foundMarks.length) % foundMarks.length;
+    const mark = foundMarks[activeIndex];
+    mark.classList.add('a6-match-current');
+    $searchStatus.text(`Match ${activeIndex + 1} of ${foundMarks.length} on this page · Enter for next`);
+    if (shouldScroll) mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function renderLocalSuggestions(query) {
     $suggestions.empty();
-    if (keyword) {
-      const found = pages.filter(page => page[0].toLocaleLowerCase().includes(keyword));
-      found.slice(0, 5).forEach(page => {
-        $("<a>", { href: page[1], class: "a6-suggestion", text: page[0] }).appendTo($suggestions);
-      });
-      if (!found.length) $("<span>", { class: "a6-suggestion-empty", text: "No matching page. Try a lesson name." }).appendTo($suggestions);
-    }
-    $suggestions.prop("hidden", !keyword);
-    highlightWords(keyword);
+    if (!query || !foundMarks.length) { $suggestions.prop('hidden', true); return; }
+    const seen = new Set();
+    foundMarks.forEach((mark, index) => {
+      const excerpt = matchExcerpt(mark);
+      if (!excerpt || seen.has(excerpt) || seen.size >= 5) return;
+      seen.add(excerpt);
+      $('<button>', { type: 'button', class: 'a6-suggestion', text: excerpt, 'data-match-index': index })
+        .appendTo($suggestions);
+    });
+    $suggestions.prop('hidden', !seen.size);
   }
-  $search.on("input", applySearch);
-  $("#siteSearchClear").on("click", function () {
-    $search.val("");
-    applySearch();
-    $search.trigger("focus");
-  });
-  $search.on("keydown", function (event) {
-    if (event.key === "Escape") {
-      $search.val(""); applySearch();
+
+  function applySearch() {
+    const query = String($search.val() || '').trim().replace(/\s+/g, ' ');
+    highlightPage(query);
+    renderLocalSuggestions(query);
+    $previous.prop('disabled', !foundMarks.length);
+    $next.prop('disabled', !foundMarks.length);
+    $copyResults.prop('disabled', !foundMarks.length);
+    $search.attr('aria-expanded', String(Boolean(query && foundMarks.length)));
+    if (!query) $searchStatus.text('Search text on this page · Press Enter to jump to a result');
+    else if (!foundMarks.length) $searchStatus.text('No matches on this page. Try another word.');
+    else {
+      setActiveMatch(0, false);
+      $searchStatus.text(`${foundMarks.length} match${foundMarks.length === 1 ? '' : 'es'} on this page · Enter to jump`);
     }
-    if (event.key === "ArrowDown") {
-      const first = $suggestions.find("a").first();
-      if (first.length) { event.preventDefault(); first.trigger("focus"); }
-    }
-    if (event.key === "Enter") {
-      const first = $suggestions.find("a").first();
-      if (first.length) { event.preventDefault(); window.location.href = first.attr("href"); }
-    }
-  });
-  // Practice Lab creates lesson cards dynamically using vanilla JS.
-  const lessonGrid = document.getElementById("a5LessonGrid");
-  if (lessonGrid) {
-    $(lessonGrid).find(".a5-lesson").attr("data-search-item", "");
-    new MutationObserver(() => {
-      $(lessonGrid).find(".a5-lesson").attr("data-search-item", "");
-      if ($search.val().trim()) applySearch();
-    }).observe(lessonGrid, { childList: true });
   }
+
+  $search.on('input search', applySearch);
+  $('#siteSearchClear').on('click', function () {
+    $search.val(''); applySearch(); $search.trigger('focus');
+  });
+  $previous.on('click', () => setActiveMatch(activeIndex - 1, true));
+  $next.on('click', () => setActiveMatch(activeIndex + 1, true));
+  $search.on('keydown', function (event) {
+    if (event.key === 'Escape') { $search.val(''); applySearch(); }
+    else if (event.key === 'Enter' && foundMarks.length) {
+      event.preventDefault();
+      const index = event.shiftKey ? activeIndex - 1 : activeIndex < 0 ? 0 : activeIndex + 1;
+      setActiveMatch(index, true);
+      $suggestions.prop('hidden', true);
+    }
+  });
+  $suggestions.on('click', '[data-match-index]', function () {
+    setActiveMatch(Number($(this).attr('data-match-index')), true);
+    $suggestions.prop('hidden', true);
+  });
+  $search.on('blur', () => window.setTimeout(() => $suggestions.prop('hidden', true), 160));
+  $search.on('focus', () => { if ($search.val().trim() && foundMarks.length) renderLocalSuggestions($search.val().trim()); });
+  // Practice Lab creates cards after JavaScript loads; refresh after category changes.
+  $(document).on('click', '.a5-filter,.faq-question,#faqToggleAll', () => {
+    if ($search.val().trim()) window.setTimeout(applySearch, 0);
+  });
+  applySearch();
 
   // Task 4: a thin progress bar at the top of every page.
   function updateScrollBar() {
@@ -155,7 +174,7 @@ $(document).ready(function () {
   });
   $(document).on("click", ".a5-star", () => toast("Rating saved for this session."));
 
-  // Task 6: a spinner appears only after existing Assignment 4 validation passes.
+  // Task 6: a spinner appears only after client-side form validation passes.
   const forms = [
     ["#contactForm", "#contactFeedback"],
     ["#registerForm", "#registerFeedback"],
@@ -169,37 +188,42 @@ $(document).ready(function () {
       if (!$button.length || $button.prop("disabled")) return;
       const oldLabel = $button.html();
       $button.prop("disabled", true).html('<span class="a6-spinner" aria-hidden="true"></span> Please wait...');
-      toast("Form validated. Demo only — nothing was sent.");
+      toast("Form checked. Your information stays on this device.");
       window.setTimeout(() => $button.prop("disabled", false).html(oldLabel), 950);
     });
   });
 
-  // Task 8: copy either a study phrase or the current page link.
-  $("#siteCopyLink, [data-copy-target]").on("click", async function () {
-    const $button = $(this);
-    const original = $button.text();
-    const target = $button.attr("data-copy-target");
-    const link = target ? $(target).text().trim() : window.location.href;
-    let copied = false;
+  // Task 8: copy text excerpts actually found on the CURRENT page.
+  async function writeToClipboard(text) {
     try {
       if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(link);
-        copied = true;
-      } else {
-        const field = document.createElement("textarea");
-        field.value = link;
-        field.style.position = "fixed";
-        field.style.opacity = "0";
-        document.body.appendChild(field);
-        field.select();
-        copied = document.execCommand("copy");
-        field.remove();
+        await navigator.clipboard.writeText(text);
+        return true;
       }
-    } catch (_) { copied = false; }
-    $button.text(copied ? "✓ Copied!" : "Copy failed");
-    $button.attr("title", copied ? "Copied to clipboard!" : "Copy is unavailable in this browser");
-    toast(copied ? "Copied to clipboard." : "Clipboard unavailable. Please select and copy the text manually.");
-    window.setTimeout(() => $button.text(original).removeAttr("title"), 1700);
+      const field = document.createElement('textarea');
+      field.value = text;
+      field.setAttribute('readonly', '');
+      field.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+      document.body.appendChild(field);
+      field.focus();
+      field.select();
+      const copied = document.execCommand('copy');
+      field.remove();
+      return copied;
+    } catch (_) { return false; }
+  }
+  $copyResults.on('click', async function () {
+    if (!foundMarks.length) return;
+    const query = $search.val().trim();
+    const lines = [...new Set(foundMarks.map(matchExcerpt))];
+    const body = `EnglishLab — matches for "${query}" on ${document.title}\n\n` +
+      lines.map((line, i) => `${i + 1}. ${line}`).join('\n');
+    const ok = await writeToClipboard(body);
+    if (ok) {
+      toast(`${lines.length} matching excerpt${lines.length === 1 ? '' : 's'} copied.`);
+      $copyResults.text('✓ Copied');
+      window.setTimeout(() => $copyResults.text('Copy matches'), 1400);
+    } else toast('Copy unavailable. Please check clipboard permissions.');
   });
 
   // Task 9: image src is set only as each image approaches the viewport.

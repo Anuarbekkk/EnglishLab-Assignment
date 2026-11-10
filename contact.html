@@ -5,8 +5,9 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EnglishLab interactive English learning website with JavaScript form validation, FAQ accordion, subscription popup, color switcher and live clock.">
+  <meta name="description" content="EnglishLab helps you learn English through short lessons, practical tests, study plans and interactive activities.">
   <title>EnglishLab | Contact</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assignment5.css">
@@ -26,7 +27,7 @@
       <div class="container py-3 px-sm-2 px-lg-4">
         <nav class="navbar navbar-expand-xl navbar-dark bg-dark border border-secondary rounded-3 shadow-sm mb-4" aria-label="Main navigation">
   <div class="container-fluid px-sm-2 px-lg-3">
-    <a class="navbar-brand fw-bold" href="index.html">EnglishLab</a>
+    <a class="navbar-brand fw-bold" href="index.html"><img class="brand-chick" src="images/brand-chick.svg" alt="" aria-hidden="true">EnglishLab</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,38 +36,40 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a></li><li class="nav-item"><a class="nav-link" href="tests.html">Tests</a></li><li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li><li class="nav-item"><a class="nav-link" href="learn.html">Learn</a></li><li class="nav-item"><a class="nav-link" href="results.html">Results</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="contact.html">Contact</a></li>
         <li class="nav-item"><a class="nav-link" href="practice-lab.html">Practice Lab</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CSS Demos</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-            <li><a class="dropdown-item" href="grid-layout.html">Grid Areas</a></li>
-            <li><a class="dropdown-item" href="gallery.html">Image Gallery</a></li>
+            <li><a class="dropdown-item" href="grid-layout.html">Study Space</a></li>
+            <li><a class="dropdown-item" href="gallery.html">Learning Gallery</a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<div class="a6-toolbar" role="search" aria-label="Search and site settings">
+<div class="a6-toolbar" role="search" aria-label="Find text in this page and site settings">
   <div class="a6-search-wrap">
-    <label for="siteSearch">Search</label>
-    <input id="siteSearch" type="search" autocomplete="off" placeholder="Find a page or a lesson" aria-controls="siteSuggestions" aria-label="Search EnglishLab">
+    <label for="siteSearch">Find here</label>
+    <input id="siteSearch" type="search" autocomplete="off" placeholder="Search text on this page..." aria-controls="siteSuggestions" aria-expanded="false" aria-label="Find text on this page">
     <button id="siteSearchClear" type="button" aria-label="Clear search">Clear</button>
-    <div id="siteSuggestions" class="a6-suggestions" aria-label="Search suggestions" hidden></div>
+    <div id="siteSuggestions" class="a6-suggestions" aria-label="Matches in this page" hidden></div>
   </div>
+  <button class="a6-tool-button" id="siteMatchPrevious" type="button" title="Previous match" disabled>↑ Prev</button>
+  <button class="a6-tool-button" id="siteMatchNext" type="button" title="Next match" disabled>↓ Next</button>
+  <button class="a6-tool-button" id="siteCopyResults" type="button" title="Copy matching text from this page" disabled>Copy matches</button>
   <button class="a6-tool-button" id="siteThemeToggle" type="button" aria-pressed="false">☀ Day mode</button>
   <button class="a6-tool-button" id="siteSoundToggle" type="button" aria-pressed="false">♫ Sound: Off</button>
-  <button class="a6-tool-button" id="siteCopyLink" type="button">Copy link</button>
-  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search pages or lessons</span>
+  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search text on this page · Press Enter to jump to a result</span>
 </div>
 
 
         <main id="main-content">
         <section>
   <h1 class="responsive-title mb-2">Contact</h1>
-  <p class="responsive-text">Send practice feedback and try JavaScript form validation. The forms are demos and do not send data to a server.</p>
-  <img class="section-banner rounded-3 border border-secondary mb-4" src="images/contact.svg" alt="Envelope and feedback illustration">
+  <p class="responsive-text">Tell us what you would like to practise. Your message is checked on this device and is not sent online.</p>
+  <img class="section-banner rounded-3 border border-secondary mb-4" src="images/banner-contact.png" alt="Contact and message illustration with laptop and envelope">
 
-  <div class="a2-flex-strip mb-4" aria-label="Assignment 2 Flexbox contact information">
-    <span><strong>Topic:</strong> English practice</span><span><strong>Response:</strong> Sample project form</span><span><strong>Team:</strong> SE-2505</span>
+  <div class="a2-flex-strip mb-4" aria-label="Contact information">
+    <span><strong>Topic:</strong> English practice</span><span><strong>Response:</strong> Local message preview</span><span><strong>Explore:</strong> Learn English</span>
   </div>
 
   <form id="contactForm" class="contact-form p-3 p-lg-4" novalidate>
@@ -99,18 +102,18 @@
         <label class="form-label" for="message">Message</label>
         <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
       </div>
-      <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="updates" name="updates"><label class="form-check-label" for="updates">Send me sample study updates</label></div></div>
+      <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="updates" name="updates"><label class="form-check-label" for="updates">I would like study updates</label></div></div>
       <div class="col-12"><div id="contactFeedback" class="a4-feedback" role="status" aria-live="polite"></div></div>
-      <div class="col-12 d-flex flex-wrap gap-2"><button type="submit" class="btn btn-success btn-lg">Send message</button><button type="reset" class="btn btn-outline-light">Clear form</button></div>
+      <div class="col-12 d-flex flex-wrap gap-2"><button type="submit" class="btn btn-success btn-lg">Preview message</button><button type="reset" class="btn btn-outline-light">Clear form</button></div>
     </div>
   </form>
 </section>
 
 
 <section class="mt-5" aria-labelledby="registerHeading">
-  <p class="a4-eyebrow mb-1">ASSIGNMENT 04 / JAVASCRIPT</p>
-  <h2 id="registerHeading">Create a study account (demo)</h2>
-  <p>Try submitting an incomplete form or two different passwords to see JavaScript validation messages. This exercise does not create a real account or store passwords.</p>
+  <p class="a4-eyebrow mb-1">LEARN AT YOUR PACE</p>
+  <h2 id="registerHeading">Check account details</h2>
+  <p>Check the format of your email and confirm that your passwords match. No account is created or information sent.</p>
   <form id="registerForm" class="contact-form p-3 p-lg-4" novalidate>
     <div class="row g-3">
       <div class="col-md-6"><label for="registerName" class="form-label">Full name *</label>
@@ -125,7 +128,7 @@
       <div class="col-md-6"><label for="registerConfirm" class="form-label">Confirm password *</label>
         <input id="registerConfirm" name="confirmPassword" class="form-control" type="password" autocomplete="new-password" required aria-describedby="registerConfirmError">
         <div id="registerConfirmError" class="a4-field-error" role="alert"></div></div>
-      <div class="col-12 d-flex flex-wrap align-items-center gap-2"><button type="submit" class="btn btn-primary btn-lg">Validate registration</button><button type="reset" class="btn btn-outline-light">Clear form</button></div>
+      <div class="col-12 d-flex flex-wrap align-items-center gap-2"><button type="submit" class="btn btn-primary btn-lg">Check details</button><button type="reset" class="btn btn-outline-light">Clear form</button></div>
       <div class="col-12"><div id="registerFeedback" class="a4-feedback" role="status" aria-live="polite"></div></div>
     </div>
   </form>
@@ -134,9 +137,9 @@
 
         </main>
         <footer class="site-footer mt-5 pt-4 pb-2 border-top border-secondary text-center">
-  <p class="mb-1">Page owner: Feruza Zhasan</p>
-  <p class="mb-1">Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p>
-  <p class="mb-0">Web Technologies 1 — Assignments 1–6 · EnglishLab</p>
+  <p class="mb-1">Created by: Feruza Zhasan</p>
+  <p class="mb-1">EnglishLab team · Anuarbek Mustafin &amp; Feruza Zhasan</p>
+  <p class="mb-0">EnglishLab · Learn, practise, improve</p>
 </footer>
 
       </div>

@@ -2,14 +2,14 @@
 
 const practiceLessons = {
   items: [
-    { title: "Present Simple", category: "grammar", level: "Beginner", minutes: 8, image: "images/grammar.svg", description: "Build clear sentences about everyday routines.", tip: "Use the base verb with I, you, we and they; add -s with he, she and it." },
-    { title: "Past Tense", category: "grammar", level: "Intermediate", minutes: 12, image: "images/slide-grammar.svg", description: "Talk about events and experiences in the past.", tip: "Start with regular -ed verbs, then practise irregular past forms in complete sentences." },
-    { title: "Travel Words", category: "vocabulary", level: "Beginner", minutes: 9, image: "images/vocabulary.svg", description: "Learn useful words for trips and airports.", tip: "Make a sentence using ticket, luggage, boarding pass, arrival and departure." },
-    { title: "Work Vocabulary", category: "vocabulary", level: "Intermediate", minutes: 11, image: "images/slide-vocabulary.svg", description: "Use English more confidently at work.", tip: "Practise deadline, meeting, schedule and feedback in a short work dialogue." },
-    { title: "Reading for Gist", category: "reading", level: "Beginner", minutes: 10, image: "images/reading.svg", description: "Identify the topic of a passage quickly.", tip: "Read the title and first line of every paragraph before examining details." },
-    { title: "Reading for Detail", category: "reading", level: "Advanced", minutes: 15, image: "images/slide-reading.svg", description: "Find evidence and answer tricky questions.", tip: "Underline keywords from the question, then locate supporting words in the text." },
-    { title: "Daily Conversation", category: "speaking", level: "Beginner", minutes: 7, image: "images/slide-speaking.svg", description: "Start conversations with natural expressions.", tip: "Try a short exchange about your day, then ask one follow-up question." },
-    { title: "Fluent Answers", category: "speaking", level: "Advanced", minutes: 14, image: "images/slide-pronunciation.svg", description: "Organize answers with examples and reasons.", tip: "Respond using the structure: answer, reason, example, and conclusion." }
+    { title: "Present Simple", category: "grammar", level: "Beginner", minutes: 8, image: "images/study-grammar.jpg", description: "Build clear sentences about everyday routines.", tip: "Use the base verb with I, you, we and they; add -s with he, she and it." },
+    { title: "Past Tense", category: "grammar", level: "Intermediate", minutes: 12, image: "images/study-grammar.jpg", description: "Talk about events and experiences in the past.", tip: "Start with regular -ed verbs, then practise irregular past forms in complete sentences." },
+    { title: "Travel Words", category: "vocabulary", level: "Beginner", minutes: 9, image: "images/study-vocabulary.jpg", description: "Learn useful words for trips and airports.", tip: "Make a sentence using ticket, luggage, boarding pass, arrival and departure." },
+    { title: "Work Vocabulary", category: "vocabulary", level: "Intermediate", minutes: 11, image: "images/study-vocabulary.jpg", description: "Use English more confidently at work.", tip: "Practise deadline, meeting, schedule and feedback in a short work dialogue." },
+    { title: "Reading for Gist", category: "reading", level: "Beginner", minutes: 10, image: "images/study-reading.jpg", description: "Identify the topic of a passage quickly.", tip: "Read the title and first line of every paragraph before examining details." },
+    { title: "Reading for Detail", category: "reading", level: "Advanced", minutes: 15, image: "images/study-reading.jpg", description: "Find evidence and answer tricky questions.", tip: "Underline keywords from the question, then locate supporting words in the text." },
+    { title: "Daily Conversation", category: "speaking", level: "Beginner", minutes: 7, image: "images/study-speaking.jpg", description: "Start conversations with natural expressions.", tip: "Try a short exchange about your day, then ask one follow-up question." },
+    { title: "Fluent Answers", category: "speaking", level: "Advanced", minutes: 14, image: "images/study-pronunciation.jpg", description: "Organize answers with examples and reasons.", tip: "Respond using the structure: answer, reason, example, and conclusion." }
   ],
   getByCategory(category) {
     return category === "all" ? this.items : this.items.filter((lesson) => lesson.category === category);

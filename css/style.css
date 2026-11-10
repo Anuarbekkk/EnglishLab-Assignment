@@ -99,7 +99,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   background-color: var(--site-surface-2); color: #fff; border-color: var(--site-green);
   box-shadow: 0 0 0 .2rem rgba(40,181,92,.18);
 }
-.form-select option { color: #111; }
+.form-select option, .form-select optgroup { color: #fff; background-color: #111a32; }
 .form-check-input { background-color: var(--site-surface-2); border-color: #74809a; }
 .form-check-input:checked { background-color: var(--site-blue); border-color: var(--site-blue); }
 .contact-form { max-width: 900px; margin-inline: auto; }

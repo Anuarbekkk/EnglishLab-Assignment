@@ -5,8 +5,9 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EnglishLab interactive English learning website with JavaScript form validation, FAQ accordion, subscription popup, color switcher and live clock.">
+  <meta name="description" content="EnglishLab helps you learn English through short lessons, practical tests, study plans and interactive activities.">
   <title>EnglishLab | Tests</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assignment5.css">
@@ -26,7 +27,7 @@
       <div class="container py-3 px-sm-2 px-lg-4">
         <nav class="navbar navbar-expand-xl navbar-dark bg-dark border border-secondary rounded-3 shadow-sm mb-4" aria-label="Main navigation">
   <div class="container-fluid px-sm-2 px-lg-3">
-    <a class="navbar-brand fw-bold" href="index.html">EnglishLab</a>
+    <a class="navbar-brand fw-bold" href="index.html"><img class="brand-chick" src="images/brand-chick.svg" alt="" aria-hidden="true">EnglishLab</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,46 +36,48 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="tests.html">Tests</a></li><li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li><li class="nav-item"><a class="nav-link" href="learn.html">Learn</a></li><li class="nav-item"><a class="nav-link" href="results.html">Results</a></li><li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         <li class="nav-item"><a class="nav-link" href="practice-lab.html">Practice Lab</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CSS Demos</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-            <li><a class="dropdown-item" href="grid-layout.html">Grid Areas</a></li>
-            <li><a class="dropdown-item" href="gallery.html">Image Gallery</a></li>
+            <li><a class="dropdown-item" href="grid-layout.html">Study Space</a></li>
+            <li><a class="dropdown-item" href="gallery.html">Learning Gallery</a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<div class="a6-toolbar" role="search" aria-label="Search and site settings">
+<div class="a6-toolbar" role="search" aria-label="Find text in this page and site settings">
   <div class="a6-search-wrap">
-    <label for="siteSearch">Search</label>
-    <input id="siteSearch" type="search" autocomplete="off" placeholder="Find a page or a lesson" aria-controls="siteSuggestions" aria-label="Search EnglishLab">
+    <label for="siteSearch">Find here</label>
+    <input id="siteSearch" type="search" autocomplete="off" placeholder="Search text on this page..." aria-controls="siteSuggestions" aria-expanded="false" aria-label="Find text on this page">
     <button id="siteSearchClear" type="button" aria-label="Clear search">Clear</button>
-    <div id="siteSuggestions" class="a6-suggestions" aria-label="Search suggestions" hidden></div>
+    <div id="siteSuggestions" class="a6-suggestions" aria-label="Matches in this page" hidden></div>
   </div>
+  <button class="a6-tool-button" id="siteMatchPrevious" type="button" title="Previous match" disabled>↑ Prev</button>
+  <button class="a6-tool-button" id="siteMatchNext" type="button" title="Next match" disabled>↓ Next</button>
+  <button class="a6-tool-button" id="siteCopyResults" type="button" title="Copy matching text from this page" disabled>Copy matches</button>
   <button class="a6-tool-button" id="siteThemeToggle" type="button" aria-pressed="false">☀ Day mode</button>
   <button class="a6-tool-button" id="siteSoundToggle" type="button" aria-pressed="false">♫ Sound: Off</button>
-  <button class="a6-tool-button" id="siteCopyLink" type="button">Copy link</button>
-  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search pages or lessons</span>
+  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search text on this page · Press Enter to jump to a result</span>
 </div>
 
 
         <main id="main-content">
         <section>
   <h1 class="responsive-title mb-2">Tests</h1>
-  <p class="responsive-text">Choose a skill. These Bootstrap cards demonstrate a responsive component layout.</p>
-  <img class="section-banner rounded-3 border border-secondary mb-4" src="images/grammar.svg" alt="English test library illustration">
+  <p class="responsive-text">Choose a skill. Choose a test that matches the skill you want to practise.</p>
+  <img class="section-banner rounded-3 border border-secondary mb-4" src="images/banner-tests.png" alt="English test library illustration">
 
-  <div class="card-group test-card-group gap-3 mb-4" aria-label="Bootstrap test cards">
-    <article data-search-item class="card shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/grammar.svg" class="card-img-top" alt="Grammar test illustration"><div class="card-body d-flex flex-column"><h2 class="card-title h5">Grammar Basics</h2><p class="card-text">Verb forms, articles, prepositions and simple sentences.</p><a href="quiz.html" class="btn btn-primary btn-sm mt-auto">Start grammar</a></div></article>
-    <article data-search-item class="card shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/vocabulary.svg" class="card-img-top" alt="Vocabulary test illustration"><div class="card-body d-flex flex-column"><h2 class="card-title h5">Vocabulary Challenge</h2><p class="card-text">Words about study, travel, work and technology.</p><a href="quiz.html" class="btn btn-primary btn-sm mt-auto">Start vocabulary</a></div></article>
-    <article data-search-item class="card shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/reading.svg" class="card-img-top" alt="Reading test illustration"><div class="card-body d-flex flex-column"><h2 class="card-title h5">Reading Practice</h2><p class="card-text">A short text with comprehension questions.</p><a href="quiz.html" class="btn btn-primary btn-sm mt-auto">Start reading</a></div></article>
+  <div class="card-group test-card-group gap-3 mb-4" aria-label="English tests">
+    <article data-search-item class="card shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/study-grammar.jpg" class="card-img-top" alt="Grammar test illustration"><div class="card-body d-flex flex-column"><h2 class="card-title h5">Grammar Basics</h2><p class="card-text">Verb forms, articles, prepositions and simple sentences.</p><a href="quiz.html" class="btn btn-primary btn-sm mt-auto">Start grammar</a></div></article>
+    <article data-search-item class="card shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/study-vocabulary.jpg" class="card-img-top" alt="Vocabulary test illustration"><div class="card-body d-flex flex-column"><h2 class="card-title h5">Vocabulary Challenge</h2><p class="card-text">Words about study, travel, work and technology.</p><a href="quiz.html?topic=vocabulary" class="btn btn-primary btn-sm mt-auto">Start vocabulary</a></div></article>
+    <article data-search-item class="card shadow-sm"><img loading="lazy" src="images/loading.svg" data-src="images/study-reading.jpg" class="card-img-top" alt="Reading test illustration"><div class="card-body d-flex flex-column"><h2 class="card-title h5">Reading Practice</h2><p class="card-text">A short text with comprehension questions.</p><a href="quiz.html?topic=reading" class="btn btn-primary btn-sm mt-auto">Start reading</a></div></article>
   </div>
 </section>
 
 <section class="mt-lg-4" aria-labelledby="media-query-heading">
-  <h2 id="media-query-heading">Responsive Study Cards — CSS Media Queries</h2>
-  <p class="responsive-text">This section intentionally does <strong>not</strong> use Bootstrap Grid: desktop shows 3 cards, tablet 2, and mobile 1.</p>
+  <h2 id="media-query-heading">Quick study tips</h2>
+  <p class="responsive-text">Review these quick tips before choosing your next challenge.</p>
   <div class="mq-card-group">
     <article class="mq-card"><h3 class="h5">Grammar Tip</h3><p>Review one rule, then write one original example sentence.</p></article>
     <article class="mq-card"><h3 class="h5">Vocabulary Tip</h3><p>Learn related words together and use them in complete sentences.</p></article>
@@ -91,9 +94,9 @@
 
         </main>
         <footer class="site-footer mt-5 pt-4 pb-2 border-top border-secondary text-center">
-  <p class="mb-1">Page owner: Feruza Zhasan</p>
-  <p class="mb-1">Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p>
-  <p class="mb-0">Web Technologies 1 — Assignments 1–6 · EnglishLab</p>
+  <p class="mb-1">Created by: Feruza Zhasan</p>
+  <p class="mb-1">EnglishLab team · Anuarbek Mustafin &amp; Feruza Zhasan</p>
+  <p class="mb-0">EnglishLab · Learn, practise, improve</p>
 </footer>
 
       </div>

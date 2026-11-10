@@ -110,7 +110,58 @@
   function initializeQuiz() {
     const form = document.getElementById("grammarQuiz");
     if (!form) return;
-    const answers = { q1: "b", q2: "b", q3: "b", q4: "b", q5: "b" };
+    // The three cards on Tests must launch the topic they advertise.
+    // All modes reuse the same simple five-question HTML form.
+    const topic = new URLSearchParams(window.location.search).get("topic");
+    const quizType = topic === "vocabulary" || topic === "reading" ? topic : "grammar";
+    const quizData = {
+      grammar: { label: "grammar", answers: ["b", "b", "b", "b", "b"] },
+      vocabulary: {
+        label: "vocabulary", answers: ["a", "b", "c", "a", "b"],
+        image: "images/study-vocabulary.jpg",
+        questions: [
+          ["1. Which word means a planned time to finish work?", "Deadline", "Holiday", "Journey", "Suggestion"],
+          ["2. What is the opposite of ancient?", "Old", "Modern", "Past", "Distant"],
+          ["3. Which phrase means improve?", "Forget", "Reduce", "Make better", "Hide"],
+          ["4. Could you ___ this word?", "Explain", "Explained", "Explaining", "Explanation"],
+          ["5. Which word is connected to travel?", "Pencil", "Luggage", "Sentence", "Deadline"]
+        ]
+      },
+      reading: {
+        label: "reading", answers: ["b", "c", "a", "d", "c"],
+        image: "images/study-reading.jpg",
+        passage: "Every Saturday, Mira visits the city library. She arrives at ten in the morning and chooses an English book. She usually studies for two hours. After reading, she writes five new words in a notebook. Mira wants to improve her vocabulary before her university exam.",
+        questions: [
+          ["1. Where does Mira go on Saturdays?", "A cafe", "The library", "A park", "A school"],
+          ["2. What time does she arrive?", "Nine", "Eleven", "Ten", "Twelve"],
+          ["3. How long does she usually study?", "Two hours", "One hour", "Three hours", "Four hours"],
+          ["4. What does Mira do after reading?", "Listens to music", "Calls a friend", "Goes home", "Writes new words"],
+          ["5. Why does Mira want to improve?", "A trip", "A new job", "A university exam", "A sports event"]
+        ]
+      }
+    };
+    const data = quizData[quizType];
+    if (data.questions) {
+      document.querySelector("#main-content h1").textContent =
+        quizType === "reading" ? "Reading Quiz" : "Vocabulary Quiz";
+      const banner = document.querySelector("#main-content .section-banner");
+      if (banner) { banner.src = data.image; banner.alt = data.label + " practice illustration"; }
+      const questions = form.querySelectorAll("fieldset.question");
+      data.questions.forEach((question, index) => {
+        if (!questions[index]) return;
+        questions[index].querySelector("legend").textContent = question[0];
+        questions[index].querySelectorAll(".option-text").forEach((option, i) => {
+          option.textContent = question[i + 1];
+        });
+      });
+      if (data.passage) {
+        const passage = document.createElement("p");
+        passage.className = "a6-reading-passage";
+        passage.textContent = data.passage;
+        form.before(passage);
+      }
+    }
+    const answers = Object.fromEntries(data.answers.map((answer, i) => ["q" + (i + 1), answer]));
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const selected = new FormData(form);
@@ -122,7 +173,7 @@
       }
       let score = 0;
       Object.keys(answers).forEach(key => { if (selected.get(key) === answers[key]) score++; });
-      remember("englishlab-last-quiz", JSON.stringify({ score, total: 5 }));
+      remember("englishlab-last-quiz", JSON.stringify({ score, total: 5, topic: quizType }));
       document.getElementById("quizFeedback").textContent = `Your result: ${score}/5 correct. Open Results to review your score.`;
       document.getElementById("quizResultLink").hidden = false;
       playSound();
@@ -136,6 +187,9 @@
       const result = JSON.parse(recall("englishlab-last-quiz") || "null");
       if (result && Number.isInteger(result.score) && result.total === 5) {
         panel.hidden = false;
+        const type = ["grammar", "vocabulary", "reading"].includes(result.topic) ? result.topic : "grammar";
+        panel.querySelector("h2").textContent = `Your latest ${type} quiz`;
+        panel.querySelector("a").href = type === "grammar" ? "quiz.html" : `quiz.html?topic=${type}`;
         panel.querySelector("strong").textContent = `${result.score}/5 correct`;
       }
     } catch (_) { /* Ignore corrupt saved data. */ }

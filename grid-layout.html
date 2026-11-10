@@ -5,8 +5,8 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EnglishLab pure CSS Flexbox and Grid demonstration.">
-  <title>EnglishLab | CSS Grid Areas</title>
+  <meta name="description" content="Learn English with bite-sized lessons, quizzes and creative study resources.">
+  <title>EnglishLab | Study Space</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assignment5.css">
   <link rel="stylesheet" href="css/upgrade.css">
@@ -21,25 +21,27 @@
 <body class="legacy-page">
 <div id="siteScrollBar" aria-hidden="true"><span id="siteScrollFill"></span></div>
 <div id="siteToast" role="status" aria-live="polite"></div>
-  <header class="legacy-header" id="main-header"><a class="legacy-logo" href="index.html">EnglishLab</a><nav aria-label="Pure CSS navigation"><ul class="legacy-nav"><li><a href="index.html">Dashboard</a></li><li><a href="tests.html">Tests</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="learn.html">Learn</a></li><li><a href="results.html">Results</a></li><li><a href="contact.html">Contact</a></li><li><a href="practice-lab.html">Practice Lab</a></li><li><a class="active" href="grid-layout.html">Grid Areas</a></li><li><a href="gallery.html">Gallery</a></li></ul></nav></header>
-<div class="a6-toolbar" role="search" aria-label="Search and site settings">
+  <header class="legacy-header" id="main-header"><a class="legacy-logo" href="index.html"><img class="brand-chick" src="images/brand-chick.svg" alt="" aria-hidden="true">EnglishLab</a><nav aria-label="Site navigation"><ul class="legacy-nav"><li><a href="index.html">Dashboard</a></li><li><a href="tests.html">Tests</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="learn.html">Learn</a></li><li><a href="results.html">Results</a></li><li><a href="contact.html">Contact</a></li><li><a href="practice-lab.html">Practice Lab</a></li><li><a class="active" href="grid-layout.html">Study Space</a></li><li><a href="gallery.html">Gallery</a></li></ul></nav></header>
+<div class="a6-toolbar" role="search" aria-label="Find text in this page and site settings">
   <div class="a6-search-wrap">
-    <label for="siteSearch">Search</label>
-    <input id="siteSearch" type="search" autocomplete="off" placeholder="Find a page or a lesson" aria-controls="siteSuggestions" aria-label="Search EnglishLab">
+    <label for="siteSearch">Find here</label>
+    <input id="siteSearch" type="search" autocomplete="off" placeholder="Search text on this page..." aria-controls="siteSuggestions" aria-expanded="false" aria-label="Find text on this page">
     <button id="siteSearchClear" type="button" aria-label="Clear search">Clear</button>
-    <div id="siteSuggestions" class="a6-suggestions" aria-label="Search suggestions" hidden></div>
+    <div id="siteSuggestions" class="a6-suggestions" aria-label="Matches in this page" hidden></div>
   </div>
+  <button class="a6-tool-button" id="siteMatchPrevious" type="button" title="Previous match" disabled>↑ Prev</button>
+  <button class="a6-tool-button" id="siteMatchNext" type="button" title="Next match" disabled>↓ Next</button>
+  <button class="a6-tool-button" id="siteCopyResults" type="button" title="Copy matching text from this page" disabled>Copy matches</button>
   <button class="a6-tool-button" id="siteThemeToggle" type="button" aria-pressed="false">☀ Day mode</button>
   <button class="a6-tool-button" id="siteSoundToggle" type="button" aria-pressed="false">♫ Sound: Off</button>
-  <button class="a6-tool-button" id="siteCopyLink" type="button">Copy link</button>
-  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search pages or lessons</span>
+  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search text on this page · Press Enter to jump to a result</span>
 </div>
 
   <div class="dashboard-layout">
-    <header class="site-header"><h1>CSS Grid Areas Demo</h1><p>Assignment 2: header spans the full top row.</p></header>
+    <header class="site-header"><h1>Study Space</h1><p>Explore a comfortable place to focus on your next English goal.</p></header>
     <aside class="sidebar"><h2>Topics</h2><ul><li>Grammar</li><li>Vocabulary</li><li>Reading</li></ul></aside>
-    <main class="main-content"><h2>Learning Area</h2><img src="images/lesson.svg" alt="Lesson illustration"><p>This parent uses <code>display: grid</code> and <code>grid-template-areas</code>. The sidebar stays on the left and the main content on the right on wide screens; the layout stacks on mobile.</p><a class="legacy-btn" href="gallery.html">Open gallery demo</a></main>
-    <footer><p>Page owner: Anuarbek Mustafin</p><p>Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p></footer>
+    <main class="main-content"><h2>Learning Area</h2><img src="images/banner-study-space.png" alt="Lesson illustration"><p>Make time for grammar, vocabulary and reading. Pick a topic and practise at your own pace.</p><a class="legacy-btn" href="gallery.html">Explore gallery</a></main>
+    <footer><p>Created by: Anuarbek Mustafin</p><p>EnglishLab team · Anuarbek Mustafin &amp; Feruza Zhasan</p></footer>
   </div>
 </body>
 </html>

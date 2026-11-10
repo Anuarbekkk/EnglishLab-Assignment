@@ -5,8 +5,9 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EnglishLab interactive English learning website with JavaScript form validation, FAQ accordion, subscription popup, color switcher and live clock.">
+  <meta name="description" content="EnglishLab helps you learn English through short lessons, practical tests, study plans and interactive activities.">
   <title>EnglishLab | Results</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assignment5.css">
@@ -26,7 +27,7 @@
       <div class="container py-3 px-sm-2 px-lg-4">
         <nav class="navbar navbar-expand-xl navbar-dark bg-dark border border-secondary rounded-3 shadow-sm mb-4" aria-label="Main navigation">
   <div class="container-fluid px-sm-2 px-lg-3">
-    <a class="navbar-brand fw-bold" href="index.html">EnglishLab</a>
+    <a class="navbar-brand fw-bold" href="index.html"><img class="brand-chick" src="images/brand-chick.svg" alt="" aria-hidden="true">EnglishLab</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,27 +36,29 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a></li><li class="nav-item"><a class="nav-link" href="tests.html">Tests</a></li><li class="nav-item"><a class="nav-link" href="quiz.html">Quiz</a></li><li class="nav-item"><a class="nav-link" href="learn.html">Learn</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="results.html">Results</a></li><li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         <li class="nav-item"><a class="nav-link" href="practice-lab.html">Practice Lab</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CSS Demos</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-            <li><a class="dropdown-item" href="grid-layout.html">Grid Areas</a></li>
-            <li><a class="dropdown-item" href="gallery.html">Image Gallery</a></li>
+            <li><a class="dropdown-item" href="grid-layout.html">Study Space</a></li>
+            <li><a class="dropdown-item" href="gallery.html">Learning Gallery</a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<div class="a6-toolbar" role="search" aria-label="Search and site settings">
+<div class="a6-toolbar" role="search" aria-label="Find text in this page and site settings">
   <div class="a6-search-wrap">
-    <label for="siteSearch">Search</label>
-    <input id="siteSearch" type="search" autocomplete="off" placeholder="Find a page or a lesson" aria-controls="siteSuggestions" aria-label="Search EnglishLab">
+    <label for="siteSearch">Find here</label>
+    <input id="siteSearch" type="search" autocomplete="off" placeholder="Search text on this page..." aria-controls="siteSuggestions" aria-expanded="false" aria-label="Find text on this page">
     <button id="siteSearchClear" type="button" aria-label="Clear search">Clear</button>
-    <div id="siteSuggestions" class="a6-suggestions" aria-label="Search suggestions" hidden></div>
+    <div id="siteSuggestions" class="a6-suggestions" aria-label="Matches in this page" hidden></div>
   </div>
+  <button class="a6-tool-button" id="siteMatchPrevious" type="button" title="Previous match" disabled>↑ Prev</button>
+  <button class="a6-tool-button" id="siteMatchNext" type="button" title="Next match" disabled>↓ Next</button>
+  <button class="a6-tool-button" id="siteCopyResults" type="button" title="Copy matching text from this page" disabled>Copy matches</button>
   <button class="a6-tool-button" id="siteThemeToggle" type="button" aria-pressed="false">☀ Day mode</button>
   <button class="a6-tool-button" id="siteSoundToggle" type="button" aria-pressed="false">♫ Sound: Off</button>
-  <button class="a6-tool-button" id="siteCopyLink" type="button">Copy link</button>
-  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search pages or lessons</span>
+  <span class="a6-toolbar-note" id="siteSearchStatus" role="status" aria-live="polite">Search text on this page · Press Enter to jump to a result</span>
 </div>
 
 
@@ -68,10 +71,10 @@
   <a class="btn btn-primary btn-sm" href="quiz.html">Try again</a>
 </div>
 
-  <p class="responsive-text">Sample scores show how a results dashboard can present learning progress.</p>
-  <img class="section-banner rounded-3 border border-secondary mb-4" src="images/slide-progress.svg" alt="Learning progress illustration">
+  <p class="responsive-text">Explore example learning milestones and track your most recent quiz result above.</p>
+  <img class="section-banner rounded-3 border border-secondary mb-4" src="images/banner-results.png" alt="Learning progress illustration">
 
-  <div class="a2-flex-strip mb-4" aria-label="Assignment 2 Flexbox result summary">
+  <div class="a2-flex-strip mb-4" aria-label="Results summary">
     <span><strong>Best score:</strong> 98</span><span><strong>Latest level:</strong> B1</span><span><strong>Focus next:</strong> Reading</span>
   </div>
 
@@ -88,14 +91,14 @@
     </table>
   </div>
 
-  <h2 class="mt-4">Top learners</h2>
+  <h2 class="mt-4">Example leaderboard</h2>
   <div class="table-responsive">
     <table class="table table-dark align-middle results-table">
       <thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Score</th><th scope="col">Category</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td><div class="learner-cell"><img loading="lazy" class="avatar" src="images/loading.svg" data-src="images/profile-1.svg" alt="Sample learner avatar"><span>Sample learner</span></div></td><td>98</td><td>Grammar</td></tr>
-        <tr><td>2</td><td><div class="learner-cell"><img loading="lazy" class="avatar" src="images/loading.svg" data-src="images/profile-2.svg" alt="Anuarbek Mustafin avatar"><span>Anuarbek Mustafin</span></div></td><td>95</td><td>Vocabulary</td></tr>
-        <tr><td>3</td><td><div class="learner-cell"><img loading="lazy" class="avatar" src="images/loading.svg" data-src="images/profile-3.svg" alt="Feruza Zhasan avatar"><span>Feruza Zhasan</span></div></td><td>92</td><td>Reading</td></tr>
+        <tr><td>1</td><td><div class="learner-cell"><img loading="lazy" class="avatar" src="images/loading.svg" data-src="images/brand-chick.svg" alt="EnglishLab mascot avatar"><span>Example learner</span></div></td><td>98</td><td>Grammar</td></tr>
+        <tr><td>2</td><td><div class="learner-cell"><img loading="lazy" class="avatar" src="images/loading.svg" data-src="images/avatar-anuarbek.jpg" alt="Illustrated avatar of Anuarbek"><span>Anuarbek Mustafin</span></div></td><td>95</td><td>Vocabulary</td></tr>
+        <tr><td>3</td><td><div class="learner-cell"><img loading="lazy" class="avatar" src="images/loading.svg" data-src="images/avatar-feruza.jpg" alt="Illustrated avatar of Feruza"><span>Feruza Zhasan</span></div></td><td>92</td><td>Reading</td></tr>
       </tbody>
     </table>
   </div>
@@ -105,9 +108,9 @@
 
         </main>
         <footer class="site-footer mt-5 pt-4 pb-2 border-top border-secondary text-center">
-  <p class="mb-1">Page owner: Feruza Zhasan</p>
-  <p class="mb-1">Team SE-2505: Anuarbek Mustafin &amp; Feruza Zhasan</p>
-  <p class="mb-0">Web Technologies 1 — Assignments 1–6 · EnglishLab</p>
+  <p class="mb-1">Created by: Feruza Zhasan</p>
+  <p class="mb-1">EnglishLab team · Anuarbek Mustafin &amp; Feruza Zhasan</p>
+  <p class="mb-0">EnglishLab · Learn, practise, improve</p>
 </footer>
 
       </div>

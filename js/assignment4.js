@@ -52,7 +52,7 @@ function initializeRegistration() {
       setFeedback(feedback, "Please correct the highlighted fields before submitting.", true);
       firstInvalid.focus();
     } else {
-      setFeedback(feedback, "All fields are valid! Demo registration passed. No account was created or data sent.");
+      setFeedback(feedback, "Your details look good. No account was created and nothing was sent.");
     }
   });
   for (const [input, errorId, validator] of fields) {
@@ -85,7 +85,7 @@ function initializeContact() {
         : !practiceSelected ? form.querySelector('input[name="practice"]') : message;
       first.focus();
     } else {
-      setFeedback(feedback, "Feedback validated successfully! This is a demo; no message was sent.");
+      setFeedback(feedback, "Your feedback is ready to review. Nothing has been sent.");
     }
   });
   form.addEventListener("reset", () => setFeedback(feedback, ""));
@@ -178,7 +178,7 @@ function initializePopup() {
       email.focus();
     } else {
       setFieldError(email, "subscribeError", "");
-      setFeedback(feedback, "Email format accepted! This is a demo: no subscription was sent.");
+      setFeedback(feedback, "Email address looks good. Nothing has been submitted or saved.");
     }
   });
   email.addEventListener("input", () => {
